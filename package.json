@@ -1,0 +1,23 @@
+{
+  "name": "weight-recording-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leonardporteria/weight-recording-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leonardporteria/weight-recording-app/issues"
+  },
+  "homepage": "https://github.com/leonardporteria/weight-recording-app#readme",
+  "dependencies": {
+    "nedb": "^1.8.0"
+  }
+}
