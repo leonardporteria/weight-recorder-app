@@ -4,9 +4,23 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Weigth Recording App</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
   </head>
   <body>
+    <h1>Weight Recording App</h1>
+    <form>
+      <label for="weight">Weight</label>
+      <input type="number" name="weight" id="weight" />
+      <label for="date">Date</label>
+      <input type="date" name="date" id="date" />
+      <button id="submit" type="button">Submit</button>
+    </form>
+
+    <canvas id="chart"></canvas>
+
     <script src="/server.js"></script>
+    <script src="./index.js"></script>
   </body>
 </html>
