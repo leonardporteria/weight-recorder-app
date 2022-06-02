@@ -1,17 +1,8 @@
 const weightEl = document.getElementById("weight");
 const dateEl = document.getElementById("date");
-
 let weight, date;
 weightEl.addEventListener("input", (e) => (weight = e.target.value));
 dateEl.addEventListener("input", (e) => (date = e.target.value));
-
-// LOAD DATABASE
-async function loadDatabase() {
-  const res = await fetch("/api");
-  const json = await res.json();
-  console.log(json);
-  return json;
-}
 
 // POST
 const button = document.getElementById("submit");
@@ -33,6 +24,15 @@ button.addEventListener("click", async () => {
   console.log(json);
 });
 
+// LOAD DATABASE
+async function loadDatabase() {
+  const res = await fetch("/api");
+  const json = await res.json();
+  console.log(json);
+  return json;
+}
+
+// GENERATE CHART
 async function generateCHart() {
   const data = await loadDatabase();
   let dateLabel = [];
@@ -41,8 +41,6 @@ async function generateCHart() {
     dateLabel.push(elm.date);
     weightArr.push(elm.weight);
   });
-  console.log(dateLabel);
-  console.log(weightArr);
 
   const ctx = document.getElementById("chart").getContext("2d");
   ctx.canvas.width = document.body.offsetWidth;
