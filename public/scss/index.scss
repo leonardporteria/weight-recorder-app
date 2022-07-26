@@ -1,0 +1,141 @@
+@import "variables";
+@import "global";
+
+.header {
+  padding: 2rem;
+  display: flex;
+  justify-content: space-around;
+  &__title {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  &__navlinks {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    > a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+  &__auth {
+    padding: 0 2.5rem;
+    width: 25%;
+    display: flex;
+    justify-content: space-around;
+    > a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+}
+
+.hero {
+  padding: 2rem;
+  display: flex;
+  &__img {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    img {
+    }
+  }
+  &__content {
+    width: 50%;
+    > h1 {
+    }
+    > h3 {
+    }
+    > p {
+    }
+    > a {
+    }
+  }
+}
+
+.about {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  &__title {
+    text-align: center;
+  }
+  &__cards {
+    display: flex;
+    h1 {
+      text-align: center;
+    }
+    p {
+      text-align: center;
+    }
+    .cards {
+    }
+    .card1 {
+    }
+    .card2 {
+    }
+    .card3 {
+    }
+  }
+}
+
+.features {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  &__title {
+    text-align: center;
+  }
+  &__cards {
+    display: flex;
+    h1 {
+      text-align: center;
+    }
+    p {
+      text-align: center;
+    }
+    .fcards {
+    }
+    .feature1 {
+    }
+    .feature2 {
+    }
+    .feature3 {
+    }
+  }
+}
+
+.feedback {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  &__title {
+    text-align: center;
+  }
+  &__cards {
+    display: flex;
+    h1 {
+      text-align: center;
+    }
+    p {
+      text-align: center;
+    }
+    .feedcards {
+    }
+    .feedback1 {
+    }
+    .feedback2 {
+    }
+    .feedback3 {
+    }
+  }
+}
+
+.footer {
+  > p {
+    text-align: center;
+  }
+}
