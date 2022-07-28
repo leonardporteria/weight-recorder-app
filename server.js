@@ -1,3 +1,4 @@
+const { log } = require("console");
 const express = require("express");
 const Datastore = require("nedb");
 const path = require("path");
@@ -46,8 +47,6 @@ app.post("/createUser", (request, response) => {
   database.insert(data);
   response.json(data);
 });
-
-// FIND USERS
 
 // ERROR 404 PAGE
 app.use((req, res) => {
