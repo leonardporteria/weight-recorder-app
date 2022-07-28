@@ -1,0 +1,51 @@
+@import "variables";
+@import "global";
+
+.header {
+  padding: 2rem;
+  display: flex;
+  justify-content: space-around;
+  &__title {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  &__navlinks {
+    padding: 0 10rem;
+    width: 75%;
+    display: flex;
+    justify-content: space-around;
+    > a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+}
+.forms {
+  padding: 2rem;
+  display: flex;
+  justify-content: space-around;
+  .register {
+    display: flex;
+    flex-direction: column;
+    > h1 {
+    }
+    input {
+    }
+    > a {
+    }
+  }
+
+  .login {
+    display: flex;
+    flex-direction: column;
+    > h1 {
+    }
+    input {
+    }
+    > a {
+    }
+  }
+}

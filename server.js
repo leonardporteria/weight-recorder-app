@@ -1,15 +1,15 @@
 const express = require("express");
 const Datastore = require("nedb");
+const path = require("path");
 const app = express();
 
+// set port
 app.listen(3000, () => console.log("listening at 3000"));
 
 app.use(express.static("public"));
 app.use(express.json());
 
-const database = new Datastore("./public/database/database.db");
-database.loadDatabase();
-
+// set path to static files
 app.get("/", (req, res) => {
   res.sendFile("./public/index.html", { root: __dirname });
 });
@@ -26,8 +26,12 @@ app.get("/dashboard", (req, res) => {
   res.sendFile("./public/dashboard.html", { root: __dirname });
 });
 
-// GET REQUEST
-app.get("/api", (request, response) => {
+// create and load database
+const database = new Datastore("./public/database/database.db");
+database.loadDatabase();
+
+// INSERT USERS
+app.get("/createUser", (request, response) => {
   database.find({}, (err, data) => {
     if (err) {
       response.end();
@@ -36,17 +40,33 @@ app.get("/api", (request, response) => {
     response.json(data);
   });
 });
-
-// POST REQUEST
-app.post("/api", (request, response) => {
+app.post("/createUser", (request, response) => {
   console.log("Server got a request!");
   const data = request.body;
   database.insert(data);
-
   response.json(data);
 });
+
+// FIND USERS
 
 // ERROR 404 PAGE
 app.use((req, res) => {
   res.status(404).sendFile("./public/404.html", { root: __dirname });
 });
+
+// redirect paths
+// app.get("/index.html", (req, res) => {
+//   res.redirect("/");
+// });
+
+// app.get("/auth.html", (req, res) => {
+//   res.redirect("/auth");
+// });
+
+// app.get("/home.html", (req, res) => {
+//   res.redirect("/home");
+// });
+
+// app.get("/dashboard.html", (req, res) => {
+//   res.redirect("/dashboard");
+// });
