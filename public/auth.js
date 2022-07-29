@@ -48,24 +48,23 @@ signupBtn.addEventListener("click", async () => {
 loginBtn.addEventListener("click", async () => {
   const loginUsername = loginUsernameInput.value;
   const loginPassword = loginPasswordInput.value;
-  const timestamp = Date.now();
-  // content
-  const data = {
-    timestamp,
-    loginUsername,
-    loginPassword,
-  };
-  console.log(data);
-  // POST config
-  const options = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  };
-  // POST
-  const response = await fetch("/createUser", options);
-  const json = await response.json();
-  console.log(json);
+
+  // FETCH data
+  const response = await fetch("/createUser");
+  const users = await response.json();
+  console.log(users);
+
+  users.every((user) => {
+    if (loginUsername === user.username) {
+      console.log("user exists");
+      if (loginPassword === user.password) {
+        console.log("login granted");
+        location.replace("./home");
+      } else {
+        console.log("wrong password");
+      }
+      return false;
+    }
+    return true;
+  });
 });
