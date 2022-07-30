@@ -48,24 +48,25 @@ app.post("/createUser", (request, response) => {
   response.json(data);
 });
 
+// SAVE USER DATA
+let userData;
+app.get("/saveData", (request, response) => {
+  database.find({}, (err, data) => {
+    if (err) {
+      response.end();
+      return;
+    }
+    response.json(userData);
+  });
+});
+app.post("/saveData", (request, response) => {
+  console.log("Server got a request!");
+  userData = request.body;
+  console.log(userData);
+  response.json(userData);
+});
+
 // ERROR 404 PAGE
 app.use((req, res) => {
   res.status(404).sendFile("./public/404.html", { root: __dirname });
 });
-
-// redirect paths
-// app.get("/index.html", (req, res) => {
-//   res.redirect("/");
-// });
-
-// app.get("/auth.html", (req, res) => {
-//   res.redirect("/auth");
-// });
-
-// app.get("/home.html", (req, res) => {
-//   res.redirect("/home");
-// });
-
-// app.get("/dashboard.html", (req, res) => {
-//   res.redirect("/dashboard");
-// });

@@ -49,16 +49,30 @@ loginBtn.addEventListener("click", async () => {
   const loginUsername = loginUsernameInput.value;
   const loginPassword = loginPasswordInput.value;
 
+  if (loginUsername === "" || loginPassword === "") {
+    console.log("provide input");
+    return;
+  }
+
   // FETCH data
   const response = await fetch("/createUser");
   const users = await response.json();
   console.log(users);
+  let username, password;
+
+  // data to store in the server
+  const data = {
+    username,
+    password,
+  };
 
   users.every((user) => {
     if (loginUsername === user.username) {
       console.log("user exists");
       if (loginPassword === user.password) {
         console.log("login granted");
+        data.username = loginUsername;
+        data.password = loginPassword;
         location.replace("./home");
       } else {
         console.log("wrong password");
@@ -67,4 +81,14 @@ loginBtn.addEventListener("click", async () => {
     }
     return true;
   });
+
+  // POST request to store data in server
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  };
+  await fetch("/saveData", options);
 });
