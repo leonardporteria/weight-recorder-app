@@ -1,6 +1,6 @@
-async function test() {
+async function main() {
   const response = await fetch("/saveData");
-  const users = await response.json();
-  console.log(users);
+  const user = await response.json();
+  console.log(user);
 }
-test();
+main();
