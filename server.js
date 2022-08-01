@@ -3,10 +3,11 @@ const express = require("express");
 const Datastore = require("nedb");
 const path = require("path");
 const app = express();
+require("dotenv").config();
 
 // set port
-const PORT = `https://weight-recording-app.herokuapp.com/`;
-app.listen(PORT || 3000, () => console.log("listening at 3000"));
+//const PORT = `https://weight-recording-app.herokuapp.com/`;
+app.listen(3000, () => console.log("listening at 3000"));
 
 app.use(express.static("public"));
 app.use(express.json());
