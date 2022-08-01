@@ -43,7 +43,7 @@ node_modules/
 jspm_packages/
 
 # Databases
-database/
+database.db
 
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
