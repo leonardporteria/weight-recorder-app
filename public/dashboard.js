@@ -5,4 +5,4 @@ async function main() {
 }
 
 main();
-console.log("END");
+console.log("ENDzz");
