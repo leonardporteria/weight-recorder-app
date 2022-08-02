@@ -12,7 +12,7 @@ A web application to keep track of your weight.
 - NeDB
 - Deployed in [Heroku](https://weight-recording-app.herokuapp.com/)
 
-> This project was made as an introduciton to backend servers, databases, and web-app deployment.
+> This project was made as an introduciton to backend servers, databases, and web-app deployment. <br/>
 > Version 1.0 | August, 2022
 
 ## _IMPORTANT NOTE_
