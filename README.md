@@ -1,4 +1,4 @@
-# weight-recorder-app
+# weight-recording-app
 
 A web application to keep track of your weight.
 
