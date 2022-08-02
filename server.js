@@ -6,8 +6,8 @@ const app = express();
 require("dotenv").config();
 
 // set port
-const PORT = process.env.PORT;
-app.listen(PORT || 3000, () => console.log(`listening at ${PORT}`));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`listening at ${PORT}`));
 
 app.use(express.static("public"));
 app.use(express.json());

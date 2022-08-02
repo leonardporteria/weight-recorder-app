@@ -1,0 +1,24 @@
+@import "variables";
+@import "global";
+
+.header {
+  padding: 2rem;
+  display: flex;
+  justify-content: space-around;
+  &__title {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  &__navlinks {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    > a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+}
