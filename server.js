@@ -30,7 +30,7 @@ app.get("/dashboard", (req, res) => {
 });
 
 // create and load database
-const database = new Datastore("./public/database/database.db");
+const database = new Datastore("./database/database.db");
 database.loadDatabase();
 
 // INSERT USERS
