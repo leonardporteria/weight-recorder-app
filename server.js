@@ -22,7 +22,11 @@ app.get("/auth", (req, res) => {
 });
 
 app.get("/home", (req, res) => {
-  res.sendFile("./public/home.html", { root: __dirname });
+  if (!userData) {
+    res.status(404).sendFile("./public/404.html", { root: __dirname });
+  } else {
+    res.sendFile("./public/home.html", { root: __dirname });
+  }
 });
 
 app.get("/dashboard", (req, res) => {
@@ -58,7 +62,8 @@ app.get("/saveData", (request, response) => {
       response.end();
       return;
     }
-    response.json(userData);
+    const user = userData;
+    response.json(user);
   });
 });
 app.post("/saveData", (request, response) => {

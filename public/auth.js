@@ -9,11 +9,18 @@ signupBtn.addEventListener("click", async () => {
   const username = signupUsernameInput.value;
   const password = signupPasswordInput.value;
   const timestamp = Date.now();
+
+  if (username === "" && password === "") {
+    console.log("provide input");
+    return;
+  }
+
   // content
   const data = {
     timestamp,
     username,
     password,
+    record: [{}],
   };
   console.log(data);
   // POST config
