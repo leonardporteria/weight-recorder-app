@@ -5,6 +5,7 @@ const loginUsernameInput = document.querySelector("#login-username");
 const loginPasswordInput = document.querySelector("#login-password");
 const loginBtn = document.querySelector("#login-btn");
 
+// SIGNUP
 signupBtn.addEventListener("click", async () => {
   const username = signupUsernameInput.value;
   const password = signupPasswordInput.value;
@@ -52,6 +53,7 @@ signupBtn.addEventListener("click", async () => {
   console.log(json);
 });
 
+// LOGIN
 loginBtn.addEventListener("click", async () => {
   const loginUsername = loginUsernameInput.value;
   const loginPassword = loginPasswordInput.value;
