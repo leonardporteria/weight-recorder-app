@@ -73,6 +73,24 @@ app.post("/saveData", (request, response) => {
   response.json(userData);
 });
 
+// INSERT RECORDS
+app.get("/insertRecord", (request, response) => {
+  database.find({ username: userData.username }, (err, data) => {
+    if (err) {
+      response.end();
+      return;
+    }
+    response.json(data);
+  });
+});
+app.post("/insertRecord", (request, response) => {
+  console.log("Server got a request!");
+  const data = request.body;
+  console.log("data", data);
+  database.update(data);
+  response.json(data);
+});
+
 // ERROR 404 PAGE
 app.use((req, res) => {
   res.status(404).sendFile("./public/404.html", { root: __dirname });
