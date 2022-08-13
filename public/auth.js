@@ -21,7 +21,7 @@ signupBtn.addEventListener("click", async () => {
     timestamp,
     username,
     password,
-    record: [{}],
+    record: [],
   };
   console.log(data);
   // POST config

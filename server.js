@@ -87,7 +87,7 @@ app.post("/insertRecord", (request, response) => {
   console.log("Server got a request!");
   const data = request.body;
   console.log("data", data);
-  database.update(data);
+  database.update({ username: userData.username }, { $push: { record: data } });
   response.json(data);
 });
 
