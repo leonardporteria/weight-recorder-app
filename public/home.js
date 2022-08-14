@@ -20,9 +20,50 @@ async function load() {
   const res = await fetch("/record");
   const json = await res.json();
   console.table(json);
-  return json;
+  sortRecord(json);
 }
 load();
+
+// ==================================================
+// HELPER FUNCTIONS
+// ==================================================
+async function sortRecord(records) {
+  console.table(records);
+
+  sortByDate(records);
+  console.table(records);
+}
+
+const sortByDate = (array) => {
+  const sorter = (a, b) => {
+    return new Date(a.date).getTime() - new Date(b.date).getTime();
+  };
+  array.sort(sorter);
+};
+
+async function hasRecorded(records, userDate) {
+  let hasData = records.some((record) => {
+    const trimDate = record.date.substring(0, 10);
+    if (trimDate === userDate) return true;
+  });
+
+  return hasData;
+}
+
+// ==================================================
+// DATE INPUT EVENT LISTENER
+// ==================================================
+dateInputElement.addEventListener("change", async (e) => {
+  const userData = await load();
+
+  console.log(e.target.value);
+
+  const hasData = await hasRecorded(userData, e.target.value);
+  if (hasData) {
+    console.log("you already has data for that day");
+    // TODO: DISABLE SUBMIT BTN
+  }
+});
 
 // ==================================================
 // SUBMIT EVENT LISTENER
@@ -50,44 +91,3 @@ submitBtn.addEventListener("click", async () => {
   const json = await response.json();
   console.log(json);
 });
-
-// ==================================================
-// DATE INPUT EVENT LISTENER
-// ==================================================
-dateInputElement.addEventListener("change", async (e) => {
-  const userData = await load();
-
-  console.log(e.target.value);
-
-  const hasData = await hasRecorded(userData, e.target.value);
-  if (hasData) {
-    console.log("you already has data for that day");
-    // TODO: DISABLE SUBMIT BTN
-  }
-});
-
-// ==================================================
-// HELPER FUNCTIONS
-// ==================================================
-
-async function sortRecord(records) {
-  console.table(records);
-  sortByDate(records);
-  console.table(records);
-}
-
-async function sortByDate(array) {
-  async function sorter(a, b) {
-    return new Date(a.date).getTime() - new Date(b.date).getTime();
-  }
-  array.sort(sorter);
-}
-
-async function hasRecorded(records, userDate) {
-  let hasData = records.some((record) => {
-    const trimDate = record.date.substring(0, 10);
-    if (trimDate === userDate) return true;
-  });
-
-  return hasData;
-}
