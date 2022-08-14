@@ -1,12 +1,20 @@
-const { log } = require("console");
+// ==================================================
+// IMPORTS
+// ==================================================
 const express = require("express");
 const Datastore = require("nedb");
-const path = require("path");
 const app = express();
 require("dotenv").config();
 
-// set port
+// ==================================================
+// VARIABLES
+// ==================================================
 const PORT = process.env.PORT || 3000;
+let USER_DATA;
+
+// ==================================================
+// EXPRESS APP RENDERING
+// ==================================================
 app.listen(PORT, () => console.log(`listening at ${PORT}`));
 
 app.use(express.static("public"));
@@ -22,7 +30,8 @@ app.get("/auth", (req, res) => {
 });
 
 app.get("/home", (req, res) => {
-  if (!userData) {
+  // check if there is user already logged in
+  if (!USER_DATA) {
     res.status(404).sendFile("./public/404.html", { root: __dirname });
   } else {
     res.sendFile("./public/home.html", { root: __dirname });
@@ -33,10 +42,15 @@ app.get("/dashboard", (req, res) => {
   res.sendFile("./public/dashboard.html", { root: __dirname });
 });
 
-// create and load database
+// ==================================================
+// DATABASE [NeDB]
+// ==================================================
 const database = new Datastore("./database/database.db");
 database.loadDatabase();
 
+// ==================================================
+// APIs
+// ==================================================
 // INSERT USERS
 app.get("/createUser", (request, response) => {
   database.find({}, (err, data) => {
@@ -55,43 +69,48 @@ app.post("/createUser", (request, response) => {
 });
 
 // SAVE USER DATA
-let userData;
+
 app.get("/saveData", (request, response) => {
   database.find({}, (err, data) => {
     if (err) {
       response.end();
       return;
     }
-    const user = userData;
+    const user = USER_DATA;
     response.json(user);
   });
 });
 app.post("/saveData", (request, response) => {
   console.log("Server got a request!");
-  userData = request.body;
-  console.log(userData);
-  response.json(userData);
+  USER_DATA = request.body;
+  console.log(USER_DATA);
+  response.json(USER_DATA);
 });
 
 // INSERT RECORDS
-app.get("/insertRecord", (request, response) => {
-  database.find({ username: userData.username }, (err, data) => {
+app.get("/record", (request, response) => {
+  database.find({ username: USER_DATA.username }, (err, data) => {
     if (err) {
       response.end();
       return;
     }
-    response.json(data);
+    response.json(data[0].record);
   });
 });
-app.post("/insertRecord", (request, response) => {
+app.post("/record", (request, response) => {
   console.log("Server got a request!");
   const data = request.body;
   console.log("data", data);
-  database.update({ username: userData.username }, { $push: { record: data } });
+  database.update(
+    { username: USER_DATA.username },
+    { $push: { record: data } }
+  );
   response.json(data);
 });
 
+// ==================================================
 // ERROR 404 PAGE
+// ==================================================
 app.use((req, res) => {
   res.status(404).sendFile("./public/404.html", { root: __dirname });
 });

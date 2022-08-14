@@ -1,3 +1,6 @@
+// ==================================================
+// GLOBAL VARIABLES
+// ==================================================
 const signupUsernameInput = document.querySelector("#signup-username");
 const signupPasswordInput = document.querySelector("#signup-password");
 const signupBtn = document.querySelector("#signup-btn");
@@ -5,26 +8,24 @@ const loginUsernameInput = document.querySelector("#login-username");
 const loginPasswordInput = document.querySelector("#login-password");
 const loginBtn = document.querySelector("#login-btn");
 
-// SIGNUP
+// ==================================================
+// SIGNUP EVENT LISTENER
+// ==================================================
 signupBtn.addEventListener("click", async () => {
   const username = signupUsernameInput.value;
   const password = signupPasswordInput.value;
   const timestamp = Date.now();
+  let hasTaken = false;
 
-  if (username === "" && password === "") {
-    console.log("provide input");
-    return;
-  }
+  if (!username && !password) return;
 
-  // content
+  // DATABASE BOILERPLATE
   const data = {
     timestamp,
     username,
     password,
     record: [],
   };
-  console.log(data);
-  // POST config
   const options = {
     method: "POST",
     headers: {
@@ -32,49 +33,43 @@ signupBtn.addEventListener("click", async () => {
     },
     body: JSON.stringify(data),
   };
-  // check if user exists
+
+  // check if username exists
   const findUser = await fetch("/createUser");
-  const userDetails = await findUser.json();
-  let taken = false;
-  userDetails.every((user) => {
+  const users = await findUser.json();
+  users.every((user) => {
     if (data.username === user.username) {
       console.log("username already taken");
-      taken = true;
+      hasTaken = true;
       return false;
     }
-    console.log(user.username);
     return true;
   });
 
-  if (taken === true) return;
+  if (hasTaken === true) return;
+
   // POST
   const response = await fetch("/createUser", options);
   const json = await response.json();
   console.log(json);
 });
 
-// LOGIN
+// ==================================================
+// LOGIN EVENT LISTENER
+// ==================================================
 loginBtn.addEventListener("click", async () => {
   const loginUsername = loginUsernameInput.value;
   const loginPassword = loginPasswordInput.value;
-
-  if (loginUsername === "" || loginPassword === "") {
-    console.log("provide input");
-    return;
-  }
-
-  // FETCH data
-  const response = await fetch("/createUser");
-  const users = await response.json();
-  console.log(users);
-  let username, password;
-
-  // data to store in the server
   const data = {
-    username,
-    password,
+    username: "",
+    password: "",
   };
 
+  if (!loginUsername || !loginPassword) return;
+
+  // FETCH user details
+  const response = await fetch("/createUser");
+  const users = await response.json();
   users.every((user) => {
     if (loginUsername === user.username) {
       console.log("user exists");
@@ -83,9 +78,7 @@ loginBtn.addEventListener("click", async () => {
         data.username = loginUsername;
         data.password = loginPassword;
         location.replace("./home");
-      } else {
-        console.log("wrong password");
-      }
+      } else console.log("wrong password");
       return false;
     }
     return true;
