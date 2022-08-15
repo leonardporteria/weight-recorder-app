@@ -21,6 +21,7 @@ async function load() {
   const json = await res.json();
   console.table(json);
   sortRecord(json);
+  return json;
 }
 load();
 
@@ -28,9 +29,8 @@ load();
 // HELPER FUNCTIONS
 // ==================================================
 async function sortRecord(records) {
-  console.table(records);
-
   sortByDate(records);
+  console.log("SORTED BY DATE");
   console.table(records);
 }
 
@@ -50,6 +50,27 @@ async function hasRecorded(records, userDate) {
   return hasData;
 }
 
+async function splitRecords() {
+  const records = await load();
+  let date = [];
+  let weight = [];
+
+  records.forEach((record) => {
+    date.push(record.date);
+  });
+  records.forEach((record) => {
+    weight.push(record.weight);
+  });
+  console.table(date);
+  console.table(weight);
+
+  return { date, weight };
+}
+
+// ==================================================
+// CHART JS CANVAS
+// ==================================================
+
 // ==================================================
 // DATE INPUT EVENT LISTENER
 // ==================================================
@@ -63,6 +84,8 @@ dateInputElement.addEventListener("change", async (e) => {
     console.log("you already has data for that day");
     // TODO: DISABLE SUBMIT BTN
   }
+
+  const { date, weight } = await splitRecords();
 });
 
 // ==================================================
