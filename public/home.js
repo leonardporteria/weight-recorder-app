@@ -54,10 +54,12 @@ async function splitRecords() {
   const records = await load();
   let date = [];
   let weight = [];
-
+  // date
   records.forEach((record) => {
-    date.push(record.date);
+    const trimRecord = record.date.substring(0, 10);
+    date.push(trimRecord);
   });
+  // weight
   records.forEach((record) => {
     weight.push(record.weight);
   });
@@ -70,7 +72,45 @@ async function splitRecords() {
 // ==================================================
 // CHART JS CANVAS
 // ==================================================
+async function generateCHart() {
+  const { date, weight } = await splitRecords();
 
+  const ctx = document.getElementById("chart").getContext("2d");
+  ctx.canvas.width = document.body.offsetWidth;
+  ctx.canvas.height = window.innerHeight;
+
+  const myChart = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: date,
+      datasets: [
+        {
+          label: "Label ng chart",
+          data: weight,
+          fill: false,
+          backgroundColor: "rgba(255, 99, 132, 0.2)",
+          borderColor: "rgba(255, 99, 132, 1)",
+          borderWidth: 1,
+          tension: 0.1,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: false,
+          ticks: {
+            callback: function (value, index, ticks) {
+              return value + "kg";
+            },
+          },
+        },
+      },
+    },
+  });
+}
+
+generateCHart();
 // ==================================================
 // DATE INPUT EVENT LISTENER
 // ==================================================
@@ -84,8 +124,6 @@ dateInputElement.addEventListener("change", async (e) => {
     console.log("you already has data for that day");
     // TODO: DISABLE SUBMIT BTN
   }
-
-  const { date, weight } = await splitRecords();
 });
 
 // ==================================================
