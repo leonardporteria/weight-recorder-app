@@ -5,18 +5,56 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/home.css" />
-    <title>Weigth Recording App</title>
+    <link rel="shortcut icon" href="./assets/logo_sqr.svg" />
+    <title>Weigth Recorder</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
   </head>
   <body>
-    <h1>Weight Recording App</h1>
-    <form>
-      <label for="weight">Weight</label>
-      <input type="number" name="weight" id="weight" />
-      <label for="date">Date</label>
-      <input type="date" name="date" id="date" />
-      <button id="submit" type="button">Submit</button>
-    </form>
+    <!--
+      @1ST: (SETUP) CONFIG USER'S STATS [AGE, WEIGHT, HEIGHT, BMI]
+      @2ND: DISPLAY VITAL RECORDS [AVERAGE, HIGHEST, LOWEST]
+    -->
+
+    <!-- ============================================================
+      HEADER
+    ============================================================ -->
+    <header>
+      <img src="./assets/logo_rect.svg" alt="Weight Recorder Logo" />
+      <div class="nav">
+        <img src="./assets/notif.png" alt="notif-bell" />
+        <h1 class="user">User</h1>
+        <div>▼</div>
+      </div>
+    </header>
+    <!-- ============================================================
+      MAIN COMPONENTS
+    ============================================================ -->
+    <div class="components">
+      <!-- MAIN -->
+      <div class="main">
+        <form>
+          <label for="weight">Weight</label>
+          <input type="number" name="weight" id="weight" />
+          <label for="date">Date</label>
+          <input type="date" name="date" id="date" />
+          <button id="submit" type="button">Submit</button>
+        </form>
+        <div class="details">
+          <h1>User</h1>
+          <p>age</p>
+          <p>heigt</p>
+          <p>latest weight</p>
+          <p>bmi</p>
+        </div>
+      </div>
+      <!-- AVERAGES PER MONTH -->
+      <div class="average">
+        <div class="average-general box"></div>
+        <div class="average-first-month box"></div>
+        <div class="average-second-month box"></div>
+        <div class="average-third-month box"></div>
+      </div>
+    </div>
 
     <canvas id="chart"></canvas>
 

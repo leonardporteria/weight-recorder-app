@@ -1,6 +1,14 @@
 @import "variables";
 @import "global";
 
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
 .header {
   padding: 2rem;
   display: flex;
@@ -9,43 +17,275 @@
     width: 25%;
     display: flex;
     justify-content: center;
-    text-decoration: none;
-    cursor: pointer;
+    > img {
+      width: 15rem;
+    }
   }
   &__navlinks {
-    padding: 0 10rem;
     width: 75%;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     > a {
-      text-decoration: none;
-      cursor: pointer;
+      font-family: $RUBIK;
+      color: $DARK_BLUE;
     }
   }
 }
+
 .forms {
+  height: 25%;
   padding: 2rem;
   display: flex;
   justify-content: space-around;
   .register {
     display: flex;
+    justify-content: space-around;
+    align-items: center;
     flex-direction: column;
     > h1 {
+      font-family: $RUBIK;
     }
     input {
+      width: 20rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid $DARK_BLUE;
+      border-radius: 0.5rem;
+      background-color: $BASE_LIGHT;
+      font-family: $RUBIK;
     }
     > a {
+      background-color: $DARK_BLUE;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 2rem;
+      width: 6rem;
+      border-radius: 2rem;
+      > p {
+        font-family: $RUBIK;
+        color: $BASE_LIGHT;
+      }
     }
   }
 
   .login {
     display: flex;
+    justify-content: space-around;
+    align-items: center;
     flex-direction: column;
     > h1 {
+      font-family: $RUBIK;
     }
     input {
+      width: 20rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid $DARK_BLUE;
+      border-radius: 0.5rem;
+      background-color: $BASE_LIGHT;
+      font-family: $RUBIK;
     }
     > a {
+      background-color: $DARK_BLUE;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 2rem;
+      width: 6rem;
+      border-radius: 2rem;
+      > p {
+        font-family: $RUBIK;
+        color: $BASE_LIGHT;
+      }
     }
   }
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .quicklinks {
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    &__main {
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: flex-start;
+      > img {
+        width: 15rem;
+      }
+      > h1 {
+        margin-top: 1rem;
+        padding-right: 1rem;
+        font-family: $OPEN_SANS;
+        font-size: 1rem;
+        font-weight: 400;
+        color: $DIMMED_LIGHT;
+      }
+    }
+    &__socials {
+      padding: 1.25rem 0 0 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: flex-start;
+      > h1 {
+        font-family: $OPEN_SANS;
+        font-size: 1.5rem;
+      }
+      &__links {
+        display: flex;
+        flex-direction: column;
+        margin-top: 1rem;
+        > a {
+          margin: 0.5rem 0;
+          color: $DIMMED_LIGHT;
+          font-family: $RUBIK;
+        }
+      }
+    }
+    &__contact {
+      padding: 1.25rem 0 0 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: flex-start;
+      > h1 {
+        font-family: $OPEN_SANS;
+        font-size: 1.5rem;
+      }
+      &__links {
+        display: flex;
+        flex-direction: column;
+        margin-top: 1rem;
+        > a {
+          margin: 0.5rem 0;
+          color: $DIMMED_LIGHT;
+          font-family: $RUBIK;
+        }
+      }
+    }
+    &__newsletter {
+      padding: 1.25rem 0 0 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: flex-start;
+      > h1 {
+        font-family: $OPEN_SANS;
+        font-size: 1.5rem;
+      }
+      > p {
+        padding: 2rem 0;
+        font-family: $OPEN_SANS;
+        font-size: 1rem;
+        font-weight: 400;
+        color: $DIMMED_LIGHT;
+      }
+      &__input {
+        width: 80%;
+        display: grid;
+        grid-template-columns: 2fr 0.75fr;
+        > input {
+          padding: 0.5rem 1rem;
+          border: 1px solid $DARK_BLUE;
+          border-radius: 1rem 0 0 1rem;
+          background-color: $BASE_LIGHT;
+          font-family: $RUBIK;
+        }
+        > button {
+          cursor: pointer;
+          border: 1px solid $DARK_BLUE;
+          background-color: $DARK_BLUE;
+          border-radius: 0 1rem 1rem 0;
+          font-family: $RUBIK;
+          color: $BASE_LIGHT;
+        }
+      }
+    }
+  }
+  &__division {
+    margin: 1rem;
+    width: 90vw;
+    height: 1px;
+    background-color: $DARK_BLUE;
+  }
+  &__copyright {
+    margin-bottom: 1rem;
+    text-align: center;
+    font-family: $OPEN_SANS;
+    font-weight: 400;
+    font-size: 1rem;
+    color: $DARK_BLUE;
+    > a {
+      color: $DARK_BLUE;
+      font-weight: 600;
+    }
+  }
+}
+
+.overlay {
+  display: none;
+  position: absolute;
+}
+
+.notif {
+  display: none;
+  position: absolute;
+}
+
+.overlay-on {
+  display: block;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.25);
+}
+.overlay-off {
+  display: none;
+}
+
+.notif-on {
+  display: block;
+  z-index: 2;
+  width: 35%;
+  height: 25%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 1rem;
+  background-color: $BASE_LIGHT;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  > p {
+    text-align: center;
+    padding: 2rem 0;
+    font-family: $OPEN_SANS;
+    font-size: 1rem;
+    font-weight: 400;
+    color: $RED;
+  }
+  > button {
+    cursor: pointer;
+    width: 6rem;
+    background-color: $DARK_BLUE;
+    border: 1px solid $DARK_BLUE;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    font-family: $RUBIK;
+    color: $BASE_LIGHT;
+  }
+}
+.notif-off {
+  display: none;
 }

@@ -16,6 +16,10 @@ async function load() {
   const response = await fetch("/saveData");
   const user = await response.json();
 
+  // setup user details
+  document.title = `Weigth Recorder | ${user.username}`;
+  document.querySelector(".user").textContent = user.username;
+
   // get the weight and date record of user
   const res = await fetch("/record");
   const json = await res.json();
@@ -30,8 +34,6 @@ load();
 // ==================================================
 async function sortRecord(records) {
   sortByDate(records);
-  console.log("SORTED BY DATE");
-  console.table(records);
 }
 
 const sortByDate = (array) => {

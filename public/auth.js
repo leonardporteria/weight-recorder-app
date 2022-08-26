@@ -65,24 +65,42 @@ loginBtn.addEventListener("click", async () => {
     password: "",
   };
 
-  if (!loginUsername || !loginPassword) return;
+  if (!loginUsername || !loginPassword) {
+    console.log("provide input");
+    alertOn("Please Provide Complete Input");
+    return;
+  }
 
   // FETCH user details
   const response = await fetch("/createUser");
   const users = await response.json();
-  users.every((user) => {
-    if (loginUsername === user.username) {
-      console.log("user exists");
-      if (loginPassword === user.password) {
-        console.log("login granted");
-        data.username = loginUsername;
-        data.password = loginPassword;
-        location.replace("./home");
-      } else console.log("wrong password");
-      return false;
+
+  // CHECK FOR USER EXISTENCE
+  let userExists = false;
+  let user;
+  users.forEach((userData) => {
+    if (loginUsername === userData.username) {
+      userExists = true;
+      user = userData;
+      return;
     }
-    return true;
   });
+
+  if (!userExists) {
+    console.log("no user");
+    alertOn(`The user '${loginUsername}' does not exist`);
+    return;
+  }
+
+  // USER AUTHENTICATION
+  if (user.password !== loginPassword) {
+    console.log("wrong pass");
+    alertOn("Wrong Password");
+    return;
+  }
+
+  data.username = loginUsername;
+  data.password = loginPassword;
 
   // POST request to store data in server
   const options = {
@@ -93,4 +111,33 @@ loginBtn.addEventListener("click", async () => {
     body: JSON.stringify(data),
   };
   await fetch("/saveData", options);
+
+  location.replace("./home");
+});
+
+// ==================================================
+// DOM MODIFICATION [overlay]
+// ==================================================
+const overlay = document.querySelector(".overlay");
+const notif = document.querySelector(".notif");
+const alertContent = document.querySelector(".notif p");
+const clearAlert = document.querySelector(".clear-alert");
+
+const alertOn = (content = "Alert!") => {
+  overlay.classList.add("overlay-on");
+  overlay.classList.remove("overlay-off");
+  notif.classList.add("notif-on");
+  notif.classList.remove("notif-off");
+
+  alertContent.textContent = content;
+};
+const alertOff = () => {
+  overlay.classList.add("overlay-off");
+  overlay.classList.remove("overlay-on");
+  notif.classList.add("notif-off");
+  notif.classList.remove("notif-on");
+};
+
+clearAlert.addEventListener("click", () => {
+  alertOff();
 });

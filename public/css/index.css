@@ -187,6 +187,7 @@ h6 {
 .about__title {
   text-align: center;
   font-family: "Rubik", sans-serif;
+  font-size: 3rem;
 }
 
 .about__cards {
@@ -197,16 +198,16 @@ h6 {
 
 .about__cards h1 {
   text-align: center;
-  font-family: "Rubik", sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 .about__cards p {
   text-align: center;
-  font-family: "Mulish", sans-serif;
+  font-family: "Rubik", sans-serif;
 }
 
 .about__cards .cards {
-  padding: 1rem;
+  padding: 3rem;
 }
 
 .features {
@@ -223,6 +224,7 @@ h6 {
 .features__title {
   text-align: center;
   font-family: "Rubik", sans-serif;
+  font-size: 3rem;
 }
 
 .features__cards {
@@ -233,16 +235,19 @@ h6 {
 
 .features__cards h1 {
   text-align: center;
-  font-family: "Rubik", sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 .features__cards p {
   text-align: center;
-  font-family: "Mulish", sans-serif;
+  font-family: "Rubik", sans-serif;
+}
+
+.features__cards .fcards {
+  padding: 3rem;
 }
 
 .footer {
-  padding: 0 2rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -250,9 +255,16 @@ h6 {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .footer .quicklinks {
+  padding: 0 2rem;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[4];
@@ -282,6 +294,7 @@ h6 {
 
 .footer .quicklinks__main > h1 {
   margin-top: 1rem;
+  padding-right: 1rem;
   font-family: "Open Sans", sans-serif;
   font-size: 1rem;
   font-weight: 400;
@@ -388,8 +401,41 @@ h6 {
   font-size: 1.5rem;
 }
 
+.footer .quicklinks__newsletter > p {
+  padding: 2rem 0;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #9b978b;
+}
+
+.footer .quicklinks__newsletter__input {
+  width: 80%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 2fr 0.75fr;
+      grid-template-columns: 2fr 0.75fr;
+}
+
+.footer .quicklinks__newsletter__input > input {
+  padding: 0.5rem 1rem;
+  border: 1px solid #1d556f;
+  border-radius: 1rem 0 0 1rem;
+  background-color: #fffbf1;
+  font-family: "Rubik", sans-serif;
+}
+
+.footer .quicklinks__newsletter__input > button {
+  cursor: pointer;
+  border: 1px solid #1d556f;
+  background-color: #1d556f;
+  border-radius: 0 1rem 1rem 0;
+  font-family: "Rubik", sans-serif;
+  color: #fffbf1;
+}
+
 .footer__division {
-  margin: 2rem 2rem 1rem 2rem;
+  margin: 1rem;
   width: 90vw;
   height: 1px;
   background-color: #1d556f;

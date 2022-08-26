@@ -95,19 +95,20 @@
   &__title {
     text-align: center;
     font-family: $RUBIK;
+    font-size: 3rem;
   }
   &__cards {
     display: flex;
     h1 {
       text-align: center;
-      font-family: $RUBIK;
+      font-family: $OPEN_SANS;
     }
     p {
       text-align: center;
-      font-family: $MULISH;
+      font-family: $RUBIK;
     }
     .cards {
-      padding: 1rem;
+      padding: 3rem;
     }
     .card1 {
     }
@@ -125,18 +126,20 @@
   &__title {
     text-align: center;
     font-family: $RUBIK;
+    font-size: 3rem;
   }
   &__cards {
     display: flex;
     h1 {
       text-align: center;
-      font-family: $RUBIK;
+      font-family: $OPEN_SANS;
     }
     p {
       text-align: center;
-      font-family: $MULISH;
+      font-family: $RUBIK;
     }
     .fcards {
+      padding: 3rem;
     }
     .feature1 {
     }
@@ -148,10 +151,12 @@
 }
 
 .footer {
-  padding: 0 2rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   .quicklinks {
+    padding: 0 2rem;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
@@ -165,6 +170,7 @@
       }
       > h1 {
         margin-top: 1rem;
+        padding-right: 1rem;
         font-family: $OPEN_SANS;
         font-size: 1rem;
         font-weight: 400;
@@ -223,16 +229,37 @@
         font-family: $OPEN_SANS;
         font-size: 1.5rem;
       }
+      > p {
+        padding: 2rem 0;
+        font-family: $OPEN_SANS;
+        font-size: 1rem;
+        font-weight: 400;
+        color: $DIMMED_LIGHT;
+      }
       &__input {
+        width: 80%;
+        display: grid;
+        grid-template-columns: 2fr 0.75fr;
         > input {
+          padding: 0.5rem 1rem;
+          border: 1px solid $DARK_BLUE;
+          border-radius: 1rem 0 0 1rem;
+          background-color: $BASE_LIGHT;
+          font-family: $RUBIK;
         }
         > button {
+          cursor: pointer;
+          border: 1px solid $DARK_BLUE;
+          background-color: $DARK_BLUE;
+          border-radius: 0 1rem 1rem 0;
+          font-family: $RUBIK;
+          color: $BASE_LIGHT;
         }
       }
     }
   }
   &__division {
-    margin: 2rem 2rem 1rem 2rem;
+    margin: 1rem;
     width: 90vw;
     height: 1px;
     background-color: $DARK_BLUE;
