@@ -1,15 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Mulish&family=Open+Sans:wght@300;400;500&family=Rubik&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Mulish&family=Open+Sans:wght@300;400;500&family=Rubik&display=swap");
 html {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 *,
 *::before,
 *::after {
-  -webkit-box-sizing: inherit;
-          box-sizing: inherit;
+  box-sizing: inherit;
   margin: 0;
   padding: 0;
   line-height: 1.3;
@@ -18,7 +16,7 @@ html {
 }
 
 body {
-  background-color: #fffbf1;
+  background-color: #fafeff;
 }
 
 a {
@@ -37,37 +35,22 @@ h6 {
 
 header {
   padding: 2rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
 }
-
 header > img {
-  width: 15rem;
+  width: 12rem;
 }
-
 header .nav {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: row;
+  align-items: center;
 }
-
 header .nav > img {
   cursor: pointer;
-  width: 2rem;
-  height: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
 }
-
 header .nav > h1 {
   cursor: pointer;
   margin: 0 2rem;
@@ -76,7 +59,6 @@ header .nav > h1 {
   font-size: 1.5rem;
   color: #1d556f;
 }
-
 header .nav > div {
   cursor: pointer;
   color: #1d556f;
@@ -84,44 +66,45 @@ header .nav > div {
 
 .components {
   padding: 2rem;
-  display: -ms-grid;
   display: grid;
-  gap: 1rem;
+  gap: 2rem;
 }
-
 .components .main {
-  display: -ms-grid;
   display: grid;
-  gap: 1rem;
-  -ms-grid-columns: 1.5fr 2.5fr;
-      grid-template-columns: 1.5fr 2.5fr;
-}
-
-.components .main > form {
-  background-color: #288fb4;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-.components .main .details {
-  background-color: #288fb4;
-}
-
-.components .average {
-  display: -ms-grid;
-  display: grid;
-  gap: 1rem;
-  -ms-grid-columns: (1fr)[4];
-      grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  grid-template-columns: 1.5fr 2.5fr;
   width: 100%;
   height: 15rem;
 }
-
+.components .main > form {
+  background-color: #288fb4;
+  display: flex;
+  flex-direction: column;
+}
+.components .main .details {
+  background-color: #288fb4;
+}
+.components .stats {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 2.5fr 1.5fr;
+  width: 100%;
+  height: 25rem;
+}
+.components .stats .stats-current-week {
+  background-color: #288fb4;
+}
+.components .stats .stats-increase-decrease {
+  background-color: #288fb4;
+}
+.components .average {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+  height: 15rem;
+}
 .components .average .box {
   background-color: #288fb4;
+  overflow: hidden;
 }

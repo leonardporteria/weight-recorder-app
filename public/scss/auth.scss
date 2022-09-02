@@ -34,7 +34,6 @@ body {
 }
 
 .forms {
-  height: 25%;
   padding: 2rem;
   display: flex;
   justify-content: space-around;
@@ -46,14 +45,26 @@ body {
     > h1 {
       font-family: $RUBIK;
     }
-    input {
-      width: 20rem;
-      padding: 0.5rem 1rem;
-      border: 1px solid $DARK_BLUE;
-      border-radius: 0.5rem;
-      background-color: $BASE_LIGHT;
-      font-family: $RUBIK;
+    &__form {
+      padding: 1rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-direction: column;
+      > p {
+        margin-top: 1rem;
+        font-family: $RUBIK;
+      }
+      input {
+        width: 20rem;
+        padding: 0.5rem 1rem;
+        border: 1px solid $DARK_BLUE;
+        border-radius: 0.5rem;
+        background-color: $BASE_LIGHT;
+        font-family: $RUBIK;
+      }
     }
+
     > a {
       background-color: $DARK_BLUE;
       display: flex;
@@ -71,20 +82,32 @@ body {
 
   .login {
     display: flex;
-    justify-content: space-around;
+    justify-content: start;
     align-items: center;
     flex-direction: column;
     > h1 {
       font-family: $RUBIK;
     }
-    input {
-      width: 20rem;
-      padding: 0.5rem 1rem;
-      border: 1px solid $DARK_BLUE;
-      border-radius: 0.5rem;
-      background-color: $BASE_LIGHT;
-      font-family: $RUBIK;
+    &__form {
+      padding: 1rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-direction: column;
+      > p {
+        margin-top: 1rem;
+        font-family: $RUBIK;
+      }
+      input {
+        width: 20rem;
+        padding: 0.5rem 1rem;
+        border: 1px solid $DARK_BLUE;
+        border-radius: 0.5rem;
+        background-color: $BASE_LIGHT;
+        font-family: $RUBIK;
+      }
     }
+
     > a {
       background-color: $DARK_BLUE;
       display: flex;

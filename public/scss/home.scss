@@ -6,7 +6,7 @@ header {
   display: flex;
   justify-content: space-between;
   > img {
-    width: 15rem;
+    width: 12rem;
   }
   .nav {
     display: flex;
@@ -14,8 +14,8 @@ header {
     align-items: center;
     > img {
       cursor: pointer;
-      width: 2rem;
-      height: 2rem;
+      width: 1.5rem;
+      height: 1.5rem;
     }
     > h1 {
       cursor: pointer;
@@ -38,12 +38,14 @@ header {
 .components {
   padding: 2rem;
   display: grid;
-  gap: 1rem;
+  gap: 2rem;
   // main
   .main {
     display: grid;
-    gap: 1rem;
+    gap: 2rem;
     grid-template-columns: 1.5fr 2.5fr;
+    width: 100%;
+    height: 15rem;
     > form {
       background-color: $BLUE;
       display: flex;
@@ -53,23 +55,38 @@ header {
       background-color: $BLUE;
     }
   }
+  // increase / decrease
+  .stats {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 2.5fr 1.5fr;
+    width: 100%;
+    height: 25rem;
+    .stats-current-week {
+      background-color: $BLUE;
+    }
+    .stats-increase-decrease {
+      background-color: $BLUE;
+    }
+  }
   // averages per month
   .average {
     display: grid;
-    gap: 1rem;
+    gap: 2rem;
     grid-template-columns: repeat(4, 1fr);
     width: 100%;
     height: 15rem;
     .box {
       background-color: $BLUE;
+      overflow: hidden;
     }
-    .average-general {
+    .average-current-month {
     }
-    .average-first-month {
+    .average-past-month {
     }
-    .average-second-month {
+    .average-three-month {
     }
-    .average-third-month {
+    .average-six-month {
     }
   }
 }

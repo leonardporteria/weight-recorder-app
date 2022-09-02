@@ -2,6 +2,8 @@
 // GLOBAL VARIABLES
 // ==================================================
 const signupUsernameInput = document.querySelector("#signup-username");
+const signupBirthdateInput = document.querySelector("#signup-birthdate");
+const signupHeightInput = document.querySelector("#signup-height");
 const signupPasswordInput = document.querySelector("#signup-password");
 const signupBtn = document.querySelector("#signup-btn");
 const loginUsernameInput = document.querySelector("#login-username");
@@ -14,6 +16,8 @@ const loginBtn = document.querySelector("#login-btn");
 signupBtn.addEventListener("click", async () => {
   const username = signupUsernameInput.value;
   const password = signupPasswordInput.value;
+  const birthdate = signupBirthdateInput.value;
+  const height = signupHeightInput.value;
   const timestamp = Date.now();
   let hasTaken = false;
 
@@ -25,6 +29,8 @@ signupBtn.addEventListener("click", async () => {
     username,
     password,
     record: [],
+    birthdate,
+    height,
   };
   const options = {
     method: "POST",

@@ -23,25 +23,39 @@
         <img src="./assets/logo_rect.svg" alt="weight recorder logo" />
       </a>
       <nav class="header__navlinks">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#features">Features</a>
-        <a href="#contact">Contact</a>
+        <a href="/#home">Home</a>
+        <a href="/#about">About</a>
+        <a href="/#features">Features</a>
+        <a href="/#contact">Contact</a>
       </nav>
     </header>
 
     <div class="forms">
       <div class="register">
         <h1>Sign up</h1>
-        <input type="text" id="signup-username" placeholder="Username" />
-        <input type="password" id="signup-password" placeholder="Password" />
+        <div class="register__form">
+          <p>Username</p>
+          <input type="text" id="signup-username" placeholder="Username" />
+          <p>Birthdate</p>
+          <input type="date" id="signup-birthdate" placeholder="Birthdate" />
+          <p>Height</p>
+          <input type="number" id="signup-height" placeholder="Height [cm]" />
+          <p>Password</p>
+          <input type="password" id="signup-password" placeholder="Password" />
+        </div>
+
         <a href="#" id="signup-btn"><p>Sign up</p></a>
       </div>
 
       <div class="login">
         <h1>Login</h1>
-        <input type="text" id="login-username" placeholder="Username" />
-        <input type="password" id="login-password" placeholder="Password" />
+        <div class="login__form">
+          <p>Username</p>
+          <input type="text" id="login-username" placeholder="Username" />
+          <p>Password</p>
+          <input type="password" id="login-password" placeholder="Password" />
+        </div>
+
         <a href="#" id="login-btn"><p>Login</p></a>
       </div>
     </div>

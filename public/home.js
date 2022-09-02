@@ -58,6 +58,7 @@ async function splitRecords() {
   let weight = [];
   // date
   records.forEach((record) => {
+    // substring(start, end) {(5,10), (8,10)}
     const trimRecord = record.date.substring(0, 10);
     date.push(trimRecord);
   });
@@ -72,12 +73,92 @@ async function splitRecords() {
 }
 
 // ==================================================
+// DATE INPUT EVENT LISTENER
+// ==================================================
+dateInputElement.addEventListener("change", async (e) => {
+  const userData = await load();
+
+  console.log(e.target.value);
+
+  const hasData = await hasRecorded(userData, e.target.value);
+  if (hasData) {
+    console.log("you already has data for that day");
+    // TODO: DISABLE SUBMIT BTN
+  }
+});
+
+// ==================================================
+// SUBMIT EVENT LISTENER
+// ==================================================
+submitBtn.addEventListener("click", async () => {
+  const weight = document.querySelector("#weight").value;
+  const date = document.querySelector("#date").value;
+  if (!weight || !date) return;
+
+  // METHOD
+  const data = {
+    date: new Date(date),
+    weight: weight,
+  };
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  };
+  // POST
+  const response = await fetch("/record", options);
+  const json = await response.json();
+  console.log(json);
+});
+
+// ==================================================
 // CHART JS CANVAS
 // ==================================================
-async function generateCHart() {
+async function generateCurrentWeek() {
   const { date, weight } = await splitRecords();
 
-  const ctx = document.getElementById("chart").getContext("2d");
+  const ctx = document.getElementById("chart-current-week").getContext("2d");
+  ctx.canvas.width = document.body.offsetWidth;
+  ctx.canvas.height = document.body.querySelector(
+    ".stats-current-week"
+  ).innerHeight;
+
+  const myChart = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: date,
+      datasets: [
+        {
+          label: "Label ng chart",
+          data: weight,
+          fill: false,
+          backgroundColor: "rgba(255, 99, 132, 0.2)",
+          borderColor: "rgba(255, 99, 132, 1)",
+          borderWidth: 1,
+          tension: 0.1,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            callback: function (value, index, ticks) {
+              return value + "kg";
+            },
+          },
+        },
+      },
+    },
+  });
+}
+async function generateCurrentMonth() {
+  const { date, weight } = await splitRecords();
+
+  const ctx = document.getElementById("chart-current-month").getContext("2d");
   ctx.canvas.width = document.body.offsetWidth;
   ctx.canvas.height = window.innerHeight;
 
@@ -100,7 +181,118 @@ async function generateCHart() {
     options: {
       scales: {
         y: {
-          beginAtZero: false,
+          beginAtZero: true,
+          ticks: {
+            callback: function (value, index, ticks) {
+              return value + "kg";
+            },
+          },
+        },
+      },
+    },
+  });
+}
+async function generatePastMonth() {
+  const { date, weight } = await splitRecords();
+
+  const ctx = document.getElementById("chart-past-month").getContext("2d");
+  ctx.canvas.width = document.body.offsetWidth;
+  ctx.canvas.height = window.innerHeight;
+
+  const myChart = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: date,
+      datasets: [
+        {
+          label: "Label ng chart",
+          data: weight,
+          fill: false,
+          backgroundColor: "rgba(255, 99, 132, 0.2)",
+          borderColor: "rgba(255, 99, 132, 1)",
+          borderWidth: 1,
+          tension: 0.1,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            callback: function (value, index, ticks) {
+              return value + "kg";
+            },
+          },
+        },
+      },
+    },
+  });
+}
+async function generateThreeMonth() {
+  const { date, weight } = await splitRecords();
+
+  const ctx = document.getElementById("chart-three-month").getContext("2d");
+  ctx.canvas.width = document.body.offsetWidth;
+  ctx.canvas.height = window.innerHeight;
+
+  const myChart = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: date,
+      datasets: [
+        {
+          label: "Label ng chart",
+          data: weight,
+          fill: false,
+          backgroundColor: "rgba(255, 99, 132, 0.2)",
+          borderColor: "rgba(255, 99, 132, 1)",
+          borderWidth: 1,
+          tension: 0.1,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            callback: function (value, index, ticks) {
+              return value + "kg";
+            },
+          },
+        },
+      },
+    },
+  });
+}
+async function generateSixMonth() {
+  const { date, weight } = await splitRecords();
+
+  const ctx = document.getElementById("chart-six-month").getContext("2d");
+  ctx.canvas.width = document.body.offsetWidth;
+  ctx.canvas.height = window.innerHeight;
+
+  const myChart = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: date,
+      datasets: [
+        {
+          label: "Label ng chart",
+          data: weight,
+          fill: false,
+          backgroundColor: "rgba(255, 99, 132, 0.2)",
+          borderColor: "rgba(255, 99, 132, 1)",
+          borderWidth: 1,
+          tension: 0.1,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
           ticks: {
             callback: function (value, index, ticks) {
               return value + "kg";
@@ -112,45 +304,8 @@ async function generateCHart() {
   });
 }
 
-generateCHart();
-// ==================================================
-// DATE INPUT EVENT LISTENER
-// ==================================================
-dateInputElement.addEventListener("change", async (e) => {
-  const userData = await load();
-
-  console.log(e.target.value);
-
-  const hasData = await hasRecorded(userData, e.target.value);
-  if (hasData) {
-    console.log("you already has data for that day");
-    // TODO: DISABLE SUBMIT BTN
-  }
-});
-
-// ==================================================
-// SUBMIT EVENT LISTENER
-// ==================================================
-submitBtn.addEventListener("click", async () => {
-  const weight = document.querySelector("#weight").value;
-  const date = document.querySelector("#date").value;
-
-  if (!weight || !date) return;
-
-  // METHOD
-  const data = {
-    date: new Date(date),
-    weight: weight,
-  };
-  const options = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  };
-  // POST
-  const response = await fetch("/record", options);
-  const json = await response.json();
-  console.log(json);
-});
+generateCurrentWeek();
+generateCurrentMonth();
+generatePastMonth();
+generateThreeMonth();
+generateSixMonth();

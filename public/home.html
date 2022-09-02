@@ -10,11 +10,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
   </head>
   <body>
-    <!--
-      @1ST: (SETUP) CONFIG USER'S STATS [AGE, WEIGHT, HEIGHT, BMI]
-      @2ND: DISPLAY VITAL RECORDS [AVERAGE, HIGHEST, LOWEST]
-    -->
-
     <!-- ============================================================
       HEADER
     ============================================================ -->
@@ -40,23 +35,43 @@
           <button id="submit" type="button">Submit</button>
         </form>
         <div class="details">
-          <h1>User</h1>
+          <h1>User Details</h1>
           <p>age</p>
           <p>heigt</p>
           <p>latest weight</p>
           <p>bmi</p>
         </div>
       </div>
+      <!-- INCREASE / DECREASE -->
+      <div class="stats">
+        <div class="stats-current-week">
+          <h1>average 1 week</h1>
+          <canvas id="chart-current-week"></canvas>
+        </div>
+        <div class="stats-increase-decrease">
+          <p>increase or decrease</p>
+        </div>
+      </div>
       <!-- AVERAGES PER MONTH -->
       <div class="average">
-        <div class="average-general box"></div>
-        <div class="average-first-month box"></div>
-        <div class="average-second-month box"></div>
-        <div class="average-third-month box"></div>
+        <div class="average-current-month box">
+          ave curr month
+          <canvas id="chart-current-month"></canvas>
+        </div>
+        <div class="average-past-month box">
+          ave past month
+          <canvas id="chart-past-month"></canvas>
+        </div>
+        <div class="average-three-month box">
+          ave 3 mons
+          <canvas id="chart-three-month"></canvas>
+        </div>
+        <div class="average-six-month box">
+          ave 6 mons
+          <canvas id="chart-six-month"></canvas>
+        </div>
       </div>
     </div>
-
-    <canvas id="chart"></canvas>
 
     <script src="./home.js"></script>
   </body>
