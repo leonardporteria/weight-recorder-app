@@ -5,6 +5,13 @@ import {
   generateThreeMonth,
   generateSixMonth,
 } from "./chart.js";
+
+import {
+  loadWeightData,
+  sortRecord,
+  hasRecorded,
+  splitRecords,
+} from "./chart.js";
 // ==================================================
 // GLOBAL VARIABLES
 // ==================================================
@@ -16,22 +23,8 @@ const submitBtn = document.querySelector("#submit");
 const dateInputElement = document.querySelector("#date");
 
 // ==================================================
-// FETCH ALL DATA FROM SERVER
+// SETUP INITIAL DATA OF USER
 // ==================================================
-export default async function loadWeightData() {
-  // save user who logged in
-  const response = await fetch("/saveData");
-  const user = await response.json();
-
-  // get the weight and date record of user
-  const res = await fetch("/record");
-  const json = await res.json();
-
-  sortRecord(json);
-  return json;
-}
-loadWeightData();
-
 export async function setup() {
   // fetch user
   const response = await fetch("/saveData");
@@ -75,47 +68,6 @@ export async function setup() {
 }
 
 setup();
-
-// ==================================================
-// HELPER FUNCTIONS
-// ==================================================
-async function sortRecord(records) {
-  sortByDate(records);
-}
-
-const sortByDate = (array) => {
-  const sorter = (a, b) => {
-    return new Date(a.date).getTime() - new Date(b.date).getTime();
-  };
-  array.sort(sorter);
-};
-
-async function hasRecorded(records, userDate) {
-  let hasData = records.some((record) => {
-    const trimDate = record.date.substring(0, 10);
-    if (trimDate === userDate) return true;
-  });
-
-  return hasData;
-}
-
-async function splitRecords() {
-  const records = await loadWeightData();
-  let date = [];
-  let weight = [];
-  // date
-  records.forEach((record) => {
-    // substring(start, end) {(5,10), (8,10)}
-    const trimRecord = record.date.substring(0, 10);
-    date.push(trimRecord);
-  });
-  // weight
-  records.forEach((record) => {
-    weight.push(record.weight);
-  });
-  console.log("test");
-  return { date, weight };
-}
 
 // ==================================================
 // DATE INPUT EVENT LISTENER

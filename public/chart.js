@@ -1,7 +1,7 @@
 // ==================================================
-// CHART JS CANVAS
+// HELPER FUNCTIONS
 // ==================================================
-export default async function loadWeightData() {
+export async function loadWeightData() {
   // save user who logged in
   const response = await fetch("/saveData");
   const user = await response.json();
@@ -13,13 +13,10 @@ export default async function loadWeightData() {
   sortRecord(json);
   return json;
 }
-// ==================================================
-// HELPER FUNCTIONS
-// ==================================================
-async function sortRecord(records) {
+
+export async function sortRecord(records) {
   sortByDate(records);
 }
-
 const sortByDate = (array) => {
   const sorter = (a, b) => {
     return new Date(a.date).getTime() - new Date(b.date).getTime();
@@ -27,7 +24,7 @@ const sortByDate = (array) => {
   array.sort(sorter);
 };
 
-async function hasRecorded(records, userDate) {
+export async function hasRecorded(records, userDate) {
   let hasData = records.some((record) => {
     const trimDate = record.date.substring(0, 10);
     if (trimDate === userDate) return true;
@@ -36,7 +33,7 @@ async function hasRecorded(records, userDate) {
   return hasData;
 }
 
-async function splitRecords() {
+export async function splitRecords() {
   const records = await loadWeightData();
   let date = [];
   let weight = [];
@@ -54,6 +51,9 @@ async function splitRecords() {
   return { date, weight };
 }
 
+// ==================================================
+// CHART JS CANVAS
+// ==================================================
 export async function generateCurrentWeek() {
   const { date, weight } = await splitRecords();
 
