@@ -1,3 +1,10 @@
+import {
+  generateCurrentWeek,
+  generateCurrentMonth,
+  generatePastMonth,
+  generateThreeMonth,
+  generateSixMonth,
+} from "./chart.js";
 // ==================================================
 // GLOBAL VARIABLES
 // ==================================================
@@ -20,14 +27,12 @@ export default async function loadWeightData() {
   const res = await fetch("/record");
   const json = await res.json();
 
-  console.log("test");
-
   sortRecord(json);
   return json;
 }
 loadWeightData();
 
-async function setup() {
+export async function setup() {
   // fetch user
   const response = await fetch("/saveData");
   const user = await response.json();
@@ -94,7 +99,7 @@ async function hasRecorded(records, userDate) {
   return hasData;
 }
 
-export default async function splitRecords() {
+async function splitRecords() {
   const records = await loadWeightData();
   let date = [];
   let weight = [];
@@ -108,7 +113,7 @@ export default async function splitRecords() {
   records.forEach((record) => {
     weight.push(record.weight);
   });
-
+  console.log("test");
   return { date, weight };
 }
 
@@ -159,198 +164,6 @@ submitBtn.addEventListener("click", async () => {
 // ==================================================
 // FRONT-END DOM
 // ==================================================
-
-// ==================================================
-// CHART JS CANVAS
-// ==================================================
-async function generateCurrentWeek() {
-  const { date, weight } = await splitRecords();
-
-  const ctx = document.getElementById("chart-current-week").getContext("2d");
-  ctx.canvas.width = document.body.offsetWidth;
-  ctx.canvas.height = document.body.querySelector(
-    ".stats-current-week"
-  ).innerHeight;
-
-  const myChart = new Chart(ctx, {
-    type: "line",
-    data: {
-      labels: date,
-      datasets: [
-        {
-          label: "Label ng chart",
-          data: weight,
-          fill: false,
-          backgroundColor: "rgba(255, 99, 132, 0.2)",
-          borderColor: "rgba(255, 99, 132, 1)",
-          borderWidth: 1,
-          tension: 0.1,
-        },
-      ],
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-          ticks: {
-            callback: function (value, index, ticks) {
-              return value + "kg";
-            },
-          },
-        },
-      },
-    },
-  });
-}
-async function generateCurrentMonth() {
-  const { date, weight } = await splitRecords();
-
-  const ctx = document.getElementById("chart-current-month").getContext("2d");
-  ctx.canvas.width = document.body.offsetWidth;
-  ctx.canvas.height = window.innerHeight;
-
-  const myChart = new Chart(ctx, {
-    type: "line",
-    data: {
-      labels: date,
-      datasets: [
-        {
-          label: "Label ng chart",
-          data: weight,
-          fill: false,
-          backgroundColor: "rgba(255, 99, 132, 0.2)",
-          borderColor: "rgba(255, 99, 132, 1)",
-          borderWidth: 1,
-          tension: 0.1,
-        },
-      ],
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-          ticks: {
-            callback: function (value, index, ticks) {
-              return value + "kg";
-            },
-          },
-        },
-      },
-    },
-  });
-}
-async function generatePastMonth() {
-  const { date, weight } = await splitRecords();
-
-  const ctx = document.getElementById("chart-past-month").getContext("2d");
-  ctx.canvas.width = document.body.offsetWidth;
-  ctx.canvas.height = window.innerHeight;
-
-  const myChart = new Chart(ctx, {
-    type: "line",
-    data: {
-      labels: date,
-      datasets: [
-        {
-          label: "Label ng chart",
-          data: weight,
-          fill: false,
-          backgroundColor: "rgba(255, 99, 132, 0.2)",
-          borderColor: "rgba(255, 99, 132, 1)",
-          borderWidth: 1,
-          tension: 0.1,
-        },
-      ],
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-          ticks: {
-            callback: function (value, index, ticks) {
-              return value + "kg";
-            },
-          },
-        },
-      },
-    },
-  });
-}
-async function generateThreeMonth() {
-  const { date, weight } = await splitRecords();
-
-  const ctx = document.getElementById("chart-three-month").getContext("2d");
-  ctx.canvas.width = document.body.offsetWidth;
-  ctx.canvas.height = window.innerHeight;
-
-  const myChart = new Chart(ctx, {
-    type: "line",
-    data: {
-      labels: date,
-      datasets: [
-        {
-          label: "Label ng chart",
-          data: weight,
-          fill: false,
-          backgroundColor: "rgba(255, 99, 132, 0.2)",
-          borderColor: "rgba(255, 99, 132, 1)",
-          borderWidth: 1,
-          tension: 0.1,
-        },
-      ],
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-          ticks: {
-            callback: function (value, index, ticks) {
-              return value + "kg";
-            },
-          },
-        },
-      },
-    },
-  });
-}
-async function generateSixMonth() {
-  const { date, weight } = await splitRecords();
-
-  const ctx = document.getElementById("chart-six-month").getContext("2d");
-  ctx.canvas.width = document.body.offsetWidth;
-  ctx.canvas.height = window.innerHeight;
-
-  const myChart = new Chart(ctx, {
-    type: "line",
-    data: {
-      labels: date,
-      datasets: [
-        {
-          label: "Label ng chart",
-          data: weight,
-          fill: false,
-          backgroundColor: "rgba(255, 99, 132, 0.2)",
-          borderColor: "rgba(255, 99, 132, 1)",
-          borderWidth: 1,
-          tension: 0.1,
-        },
-      ],
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-          ticks: {
-            callback: function (value, index, ticks) {
-              return value + "kg";
-            },
-          },
-        },
-      },
-    },
-  });
-}
-
 generateCurrentWeek();
 generateCurrentMonth();
 generatePastMonth();
