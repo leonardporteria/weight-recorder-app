@@ -69,7 +69,6 @@ app.post("/createUser", (request, response) => {
 });
 
 // SAVE USER DATA
-
 app.get("/saveData", (request, response) => {
   database.find({}, (err, data) => {
     if (err) {

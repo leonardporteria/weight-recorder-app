@@ -11,23 +11,65 @@ const dateInputElement = document.querySelector("#date");
 // ==================================================
 // FETCH ALL DATA FROM SERVER
 // ==================================================
-async function load() {
+export default async function loadWeightData() {
   // save user who logged in
   const response = await fetch("/saveData");
   const user = await response.json();
 
-  // setup user details
-  document.title = `Weigth Recorder | ${user.username}`;
-  document.querySelector(".user").textContent = user.username;
-
   // get the weight and date record of user
   const res = await fetch("/record");
   const json = await res.json();
-  console.table(json);
+
+  console.log("test");
+
   sortRecord(json);
   return json;
 }
-load();
+loadWeightData();
+
+async function setup() {
+  // fetch user
+  const response = await fetch("/saveData");
+  const user = await response.json();
+
+  console.log(user);
+
+  // DOM variables
+  const userUsername = document.querySelector(".user");
+  const userDetailsAge = document.querySelector(".details-age");
+  const userDetailsHeight = document.querySelector(".details-height");
+  const userDetailsWeight = document.querySelector(".details-weight");
+  const userDetailsBMI = document.querySelector(".details-bmi");
+
+  // change site title to username
+  document.title = `Weigth Recorder | ${user.username}`;
+
+  // calculate details
+  const recordLength = Object.keys(user.record).length;
+  let latestWeight = 0;
+  if (recordLength !== 0) {
+    latestWeight = user.record[recordLength - 1].weight;
+  }
+
+  //calculate bmi [weight / height[m]^2]
+  const BMI = latestWeight / Math.pow(user.height / 100, 2);
+
+  // TODO: calculate age from string
+  var dob = new Date(user.birthdate);
+  var monthDiff = Date.now() - dob.getTime();
+  var ageFullDay = new Date(monthDiff);
+  var year = ageFullDay.getUTCFullYear();
+  var age = Math.abs(year - 1970);
+
+  // setup user details
+  userUsername.textContent = user.username;
+  userDetailsAge.textContent = `${user.birthdate} dob || age ${age}yrs old`;
+  userDetailsHeight.textContent = `height ${user.height}cm`;
+  userDetailsWeight.textContent = `latest weight ${latestWeight}kg`;
+  userDetailsBMI.textContent = `latest bmi ${BMI.toFixed(2)}`;
+}
+
+setup();
 
 // ==================================================
 // HELPER FUNCTIONS
@@ -52,8 +94,8 @@ async function hasRecorded(records, userDate) {
   return hasData;
 }
 
-async function splitRecords() {
-  const records = await load();
+export default async function splitRecords() {
+  const records = await loadWeightData();
   let date = [];
   let weight = [];
   // date
@@ -66,8 +108,6 @@ async function splitRecords() {
   records.forEach((record) => {
     weight.push(record.weight);
   });
-  console.table(date);
-  console.table(weight);
 
   return { date, weight };
 }
@@ -76,7 +116,7 @@ async function splitRecords() {
 // DATE INPUT EVENT LISTENER
 // ==================================================
 dateInputElement.addEventListener("change", async (e) => {
-  const userData = await load();
+  const userData = await loadWeightData();
 
   console.log(e.target.value);
 
@@ -95,6 +135,9 @@ submitBtn.addEventListener("click", async () => {
   const date = document.querySelector("#date").value;
   if (!weight || !date) return;
 
+  // update setup info onclick
+  await setup();
+
   // METHOD
   const data = {
     date: new Date(date),
@@ -112,6 +155,10 @@ submitBtn.addEventListener("click", async () => {
   const json = await response.json();
   console.log(json);
 });
+
+// ==================================================
+// FRONT-END DOM
+// ==================================================
 
 // ==================================================
 // CHART JS CANVAS

@@ -28,9 +28,9 @@ signupBtn.addEventListener("click", async () => {
     timestamp,
     username,
     password,
-    record: [],
     birthdate,
     height,
+    record: [],
   };
   const options = {
     method: "POST",
@@ -66,10 +66,6 @@ signupBtn.addEventListener("click", async () => {
 loginBtn.addEventListener("click", async () => {
   const loginUsername = loginUsernameInput.value;
   const loginPassword = loginPasswordInput.value;
-  const data = {
-    username: "",
-    password: "",
-  };
 
   if (!loginUsername || !loginPassword) {
     console.log("provide input");
@@ -105,8 +101,7 @@ loginBtn.addEventListener("click", async () => {
     return;
   }
 
-  data.username = loginUsername;
-  data.password = loginPassword;
+  console.log(user);
 
   // POST request to store data in server
   const options = {
@@ -114,7 +109,7 @@ loginBtn.addEventListener("click", async () => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(user),
   };
   await fetch("/saveData", options);
 
