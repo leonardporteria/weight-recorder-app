@@ -54,190 +54,222 @@ export async function splitRecords() {
 // ==================================================
 // CHART JS CANVAS
 // ==================================================
-export async function generateCurrentWeek() {
-  const { date, weight } = await splitRecords();
+export class ChartGenerator {
+  constructor() {
+    this.currentWeek;
+    this.currentMonth;
+    this.pastMonth;
+    this.threeMonth;
+    this.sixMonth;
+  }
 
-  const ctx = document.getElementById("chart-current-week").getContext("2d");
-  ctx.canvas.width = document.body.offsetWidth;
-  ctx.canvas.height = document.body.querySelector(
-    ".stats-current-week"
-  ).innerHeight;
+  // ==================================================
+  // CHART JS GENERATE CANVAS
+  // ==================================================
+  async generateCurrentWeek() {
+    const { date, weight } = await splitRecords();
 
-  const myChart = new Chart(ctx, {
-    type: "line",
-    data: {
-      labels: date,
-      datasets: [
-        {
-          label: "Label ng chart",
-          data: weight,
-          fill: false,
-          backgroundColor: "rgba(255, 99, 132, 0.2)",
-          borderColor: "rgba(255, 99, 132, 1)",
-          borderWidth: 1,
-          tension: 0.1,
-        },
-      ],
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-          ticks: {
-            callback: function (value, index, ticks) {
-              return value + "kg";
+    const ctx = document.getElementById("chart-current-week").getContext("2d");
+    ctx.canvas.width = document.body.offsetWidth;
+    ctx.canvas.height = document.body.querySelector(
+      ".stats-current-week"
+    ).innerHeight;
+
+    this.currentWeek = new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: date,
+        datasets: [
+          {
+            label: "Label ng chart",
+            data: weight,
+            fill: false,
+            backgroundColor: "rgba(255, 99, 132, 0.2)",
+            borderColor: "rgba(255, 99, 132, 1)",
+            borderWidth: 1,
+            tension: 0.1,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              callback: function (value, index, ticks) {
+                return value + "kg";
+              },
             },
           },
         },
       },
-    },
-  });
-}
-export async function generateCurrentMonth() {
-  const { date, weight } = await splitRecords();
+    });
+  }
+  async generateCurrentMonth() {
+    const { date, weight } = await splitRecords();
 
-  const ctx = document.getElementById("chart-current-month").getContext("2d");
-  ctx.canvas.width = document.body.offsetWidth;
-  ctx.canvas.height = window.innerHeight;
+    const ctx = document.getElementById("chart-current-month").getContext("2d");
+    ctx.canvas.width = document.body.offsetWidth;
+    ctx.canvas.height = window.innerHeight;
 
-  const myChart = new Chart(ctx, {
-    type: "line",
-    data: {
-      labels: date,
-      datasets: [
-        {
-          label: "Label ng chart",
-          data: weight,
-          fill: false,
-          backgroundColor: "rgba(255, 99, 132, 0.2)",
-          borderColor: "rgba(255, 99, 132, 1)",
-          borderWidth: 1,
-          tension: 0.1,
-        },
-      ],
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-          ticks: {
-            callback: function (value, index, ticks) {
-              return value + "kg";
+    this.currentMonth = new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: date,
+        datasets: [
+          {
+            label: "Label ng chart",
+            data: weight,
+            fill: false,
+            backgroundColor: "rgba(255, 99, 132, 0.2)",
+            borderColor: "rgba(255, 99, 132, 1)",
+            borderWidth: 1,
+            tension: 0.1,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              callback: function (value, index, ticks) {
+                return value + "kg";
+              },
             },
           },
         },
       },
-    },
-  });
-}
-export async function generatePastMonth() {
-  const { date, weight } = await splitRecords();
+    });
+  }
+  async generatePastMonth() {
+    const { date, weight } = await splitRecords();
 
-  const ctx = document.getElementById("chart-past-month").getContext("2d");
-  ctx.canvas.width = document.body.offsetWidth;
-  ctx.canvas.height = window.innerHeight;
+    const ctx = document.getElementById("chart-past-month").getContext("2d");
+    ctx.canvas.width = document.body.offsetWidth;
+    ctx.canvas.height = window.innerHeight;
 
-  const myChart = new Chart(ctx, {
-    type: "line",
-    data: {
-      labels: date,
-      datasets: [
-        {
-          label: "Label ng chart",
-          data: weight,
-          fill: false,
-          backgroundColor: "rgba(255, 99, 132, 0.2)",
-          borderColor: "rgba(255, 99, 132, 1)",
-          borderWidth: 1,
-          tension: 0.1,
-        },
-      ],
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-          ticks: {
-            callback: function (value, index, ticks) {
-              return value + "kg";
+    this.pastMonth = new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: date,
+        datasets: [
+          {
+            label: "Label ng chart",
+            data: weight,
+            fill: false,
+            backgroundColor: "rgba(255, 99, 132, 0.2)",
+            borderColor: "rgba(255, 99, 132, 1)",
+            borderWidth: 1,
+            tension: 0.1,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              callback: function (value, index, ticks) {
+                return value + "kg";
+              },
             },
           },
         },
       },
-    },
-  });
-}
-export async function generateThreeMonth() {
-  const { date, weight } = await splitRecords();
+    });
+  }
+  async generateThreeMonth() {
+    const { date, weight } = await splitRecords();
 
-  const ctx = document.getElementById("chart-three-month").getContext("2d");
-  ctx.canvas.width = document.body.offsetWidth;
-  ctx.canvas.height = window.innerHeight;
+    const ctx = document.getElementById("chart-three-month").getContext("2d");
+    ctx.canvas.width = document.body.offsetWidth;
+    ctx.canvas.height = window.innerHeight;
 
-  const myChart = new Chart(ctx, {
-    type: "line",
-    data: {
-      labels: date,
-      datasets: [
-        {
-          label: "Label ng chart",
-          data: weight,
-          fill: false,
-          backgroundColor: "rgba(255, 99, 132, 0.2)",
-          borderColor: "rgba(255, 99, 132, 1)",
-          borderWidth: 1,
-          tension: 0.1,
-        },
-      ],
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-          ticks: {
-            callback: function (value, index, ticks) {
-              return value + "kg";
+    this.threeMonth = new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: date,
+        datasets: [
+          {
+            label: "Label ng chart",
+            data: weight,
+            fill: false,
+            backgroundColor: "rgba(255, 99, 132, 0.2)",
+            borderColor: "rgba(255, 99, 132, 1)",
+            borderWidth: 1,
+            tension: 0.1,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              callback: function (value, index, ticks) {
+                return value + "kg";
+              },
             },
           },
         },
       },
-    },
-  });
-}
-export async function generateSixMonth() {
-  const { date, weight } = await splitRecords();
+    });
+  }
+  async generateSixMonth() {
+    const { date, weight } = await splitRecords();
 
-  const ctx = document.getElementById("chart-six-month").getContext("2d");
-  ctx.canvas.width = document.body.offsetWidth;
-  ctx.canvas.height = window.innerHeight;
+    const ctx = document.getElementById("chart-six-month").getContext("2d");
+    ctx.canvas.width = document.body.offsetWidth;
+    ctx.canvas.height = window.innerHeight;
 
-  const myChart = new Chart(ctx, {
-    type: "line",
-    data: {
-      labels: date,
-      datasets: [
-        {
-          label: "Label ng chart",
-          data: weight,
-          fill: false,
-          backgroundColor: "rgba(255, 99, 132, 0.2)",
-          borderColor: "rgba(255, 99, 132, 1)",
-          borderWidth: 1,
-          tension: 0.1,
-        },
-      ],
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-          ticks: {
-            callback: function (value, index, ticks) {
-              return value + "kg";
+    this.sixMonth = new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: date,
+        datasets: [
+          {
+            label: "Label ng chart",
+            data: weight,
+            fill: false,
+            backgroundColor: "rgba(255, 99, 132, 0.2)",
+            borderColor: "rgba(255, 99, 132, 1)",
+            borderWidth: 1,
+            tension: 0.1,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              callback: function (value, index, ticks) {
+                return value + "kg";
+              },
             },
           },
         },
       },
-    },
-  });
+    });
+  }
+
+  // ==================================================
+  // CHART JS DESTROY CANVAS
+  // ==================================================
+  destroyCurrentWeek() {
+    this.currentWeek.destroy();
+  }
+  destroyCurrentMonth() {
+    this.currentMonth.destroy();
+  }
+  destroyPastMonth() {
+    this.pastMonth.destroy();
+  }
+  destroyThreeMonth() {
+    this.threeMonth.destroy();
+  }
+  destroySixMonth() {
+    this.sixMonth.destroy();
+  }
 }

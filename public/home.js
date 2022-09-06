@@ -1,3 +1,5 @@
+import { loadWeightData, hasRecorded } from "./chart.js";
+import { ChartGenerator } from "./chart.js";
 import {
   generateCurrentWeek,
   generateCurrentMonth,
@@ -6,12 +8,6 @@ import {
   generateSixMonth,
 } from "./chart.js";
 
-import {
-  loadWeightData,
-  sortRecord,
-  hasRecorded,
-  splitRecords,
-} from "./chart.js";
 // ==================================================
 // GLOBAL VARIABLES
 // ==================================================
@@ -116,8 +112,10 @@ submitBtn.addEventListener("click", async () => {
 // ==================================================
 // FRONT-END DOM
 // ==================================================
-generateCurrentWeek();
-generateCurrentMonth();
-generatePastMonth();
-generateThreeMonth();
-generateSixMonth();
+const myChart = new ChartGenerator();
+
+myChart.generateCurrentWeek();
+myChart.generateCurrentMonth();
+myChart.generatePastMonth();
+myChart.generateThreeMonth();
+myChart.generateSixMonth();
