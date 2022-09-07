@@ -1,12 +1,5 @@
 import { loadWeightData, hasRecorded } from "./chart.js";
 import { ChartGenerator } from "./chart.js";
-import {
-  generateCurrentWeek,
-  generateCurrentMonth,
-  generatePastMonth,
-  generateThreeMonth,
-  generateSixMonth,
-} from "./chart.js";
 
 // ==================================================
 // GLOBAL VARIABLES
@@ -21,12 +14,18 @@ const dateInputElement = document.querySelector("#date");
 // ==================================================
 // SETUP INITIAL DATA OF USER
 // ==================================================
-export async function setup() {
+// global variable for weight data [used for dynamic changes in frontend]
+let weightData;
+async function saveWeightData() {
+  weightData = await loadWeightData();
+}
+saveWeightData();
+
+async function setup() {
   // fetch user
   const response = await fetch("/saveData");
   const user = await response.json();
-
-  console.log(user);
+  const record = weightData;
 
   // DOM variables
   const userUsername = document.querySelector(".user");
@@ -39,21 +38,21 @@ export async function setup() {
   document.title = `Weigth Recorder | ${user.username}`;
 
   // calculate details
-  const recordLength = Object.keys(user.record).length;
+  const recordLength = Object.keys(record).length;
   let latestWeight = 0;
   if (recordLength !== 0) {
-    latestWeight = user.record[recordLength - 1].weight;
+    latestWeight = record[recordLength - 1].weight;
   }
 
   //calculate bmi [weight / height[m]^2]
   const BMI = latestWeight / Math.pow(user.height / 100, 2);
 
   // TODO: calculate age from string
-  var dob = new Date(user.birthdate);
-  var monthDiff = Date.now() - dob.getTime();
-  var ageFullDay = new Date(monthDiff);
-  var year = ageFullDay.getUTCFullYear();
-  var age = Math.abs(year - 1970);
+  let dob = new Date(user.birthdate);
+  let monthDiff = Date.now() - dob.getTime();
+  let ageFullDay = new Date(monthDiff);
+  let year = ageFullDay.getUTCFullYear();
+  let age = Math.abs(year - 1970);
 
   // setup user details
   userUsername.textContent = user.username;
@@ -63,7 +62,18 @@ export async function setup() {
   userDetailsBMI.textContent = `latest bmi ${BMI.toFixed(2)}`;
 }
 
-setup();
+setTimeout(setup, 500);
+
+// ==================================================
+// CHART JS OBJECT
+// ==================================================
+const myChart = new ChartGenerator();
+
+myChart.generateCurrentWeek();
+myChart.generateCurrentMonth();
+myChart.generatePastMonth();
+myChart.generateThreeMonth();
+myChart.generateSixMonth();
 
 // ==================================================
 // DATE INPUT EVENT LISTENER
@@ -88,9 +98,6 @@ submitBtn.addEventListener("click", async () => {
   const date = document.querySelector("#date").value;
   if (!weight || !date) return;
 
-  // update setup info onclick
-  await setup();
-
   // METHOD
   const data = {
     date: new Date(date),
@@ -107,15 +114,33 @@ submitBtn.addEventListener("click", async () => {
   const response = await fetch("/record", options);
   const json = await response.json();
   console.log(json);
+
+  // push latest data
+  weightData.push(data);
+
+  // update new user details
+  setup();
+
+  // destroy chart
+  myChart.destroyCurrentWeek();
+  myChart.destroyCurrentMonth();
+  myChart.destroyPastMonth();
+  myChart.destroyThreeMonth();
+  myChart.destroySixMonth();
+  // regenerate chart
+  myChart.generateCurrentWeek();
+  myChart.generateCurrentMonth();
+  myChart.generatePastMonth();
+  myChart.generateThreeMonth();
+  myChart.generateSixMonth();
 });
 
 // ==================================================
-// FRONT-END DOM
+// DEBUG
 // ==================================================
-const myChart = new ChartGenerator();
-
-myChart.generateCurrentWeek();
-myChart.generateCurrentMonth();
-myChart.generatePastMonth();
-myChart.generateThreeMonth();
-myChart.generateSixMonth();
+const debugButton = document.querySelector("#clickme");
+debugButton.addEventListener("click", async () => {
+  console.log("DEBUG");
+  await setup();
+  console.log(weightData);
+});
