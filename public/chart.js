@@ -52,6 +52,10 @@ export async function splitRecords() {
 }
 
 // ==================================================
+// SORT RECORD BY MONTH
+// ==================================================
+
+// ==================================================
 // CHART JS CANVAS
 // ==================================================
 export class ChartGenerator {
@@ -69,6 +73,9 @@ export class ChartGenerator {
   async generateCurrentWeek() {
     const { date, weight } = await splitRecords();
 
+    const dateRecord = date.slice(-7);
+    const weightRecord = weight.slice(-7);
+
     const ctx = document.getElementById("chart-current-week").getContext("2d");
     ctx.canvas.width = document.body.offsetWidth;
     ctx.canvas.height = document.body.querySelector(
@@ -78,13 +85,13 @@ export class ChartGenerator {
     this.currentWeek = new Chart(ctx, {
       type: "line",
       data: {
-        labels: date,
+        labels: dateRecord,
         datasets: [
           {
-            label: "Label ng chart",
-            data: weight,
+            label: "PAST 7 DAYS RECORD",
+            data: weightRecord,
             fill: false,
-            backgroundColor: "rgba(255, 99, 132, 0.2)",
+            backgroundColor: "rgba(50, 0, 0, 0.1)",
             borderColor: "rgba(255, 99, 132, 1)",
             borderWidth: 1,
             tension: 0.1,
@@ -108,6 +115,9 @@ export class ChartGenerator {
   async generateCurrentMonth() {
     const { date, weight } = await splitRecords();
 
+    const dateRecord = date.slice(-30);
+    const weightRecord = weight.slice(-30);
+
     const ctx = document.getElementById("chart-current-month").getContext("2d");
     ctx.canvas.width = document.body.offsetWidth;
     ctx.canvas.height = window.innerHeight;
@@ -115,11 +125,11 @@ export class ChartGenerator {
     this.currentMonth = new Chart(ctx, {
       type: "line",
       data: {
-        labels: date,
+        labels: dateRecord,
         datasets: [
           {
-            label: "Label ng chart",
-            data: weight,
+            label: "PAST 30 DAYS RECORD",
+            data: weightRecord,
             fill: false,
             backgroundColor: "rgba(255, 99, 132, 0.2)",
             borderColor: "rgba(255, 99, 132, 1)",

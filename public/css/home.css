@@ -77,12 +77,12 @@ header .nav > div {
   height: 15rem;
 }
 .components .main > form {
-  background-color: #288fb4;
+  border: 1px solid #288fb4;
   display: flex;
   flex-direction: column;
 }
 .components .main .details {
-  background-color: #288fb4;
+  border: 1px solid #288fb4;
 }
 .components .stats {
   display: grid;
@@ -92,10 +92,10 @@ header .nav > div {
   height: 25rem;
 }
 .components .stats .stats-current-week {
-  background-color: #288fb4;
+  border: 1px solid #288fb4;
 }
 .components .stats .stats-increase-decrease {
-  background-color: #288fb4;
+  border: 1px solid #288fb4;
 }
 .components .average {
   display: grid;
@@ -105,6 +105,6 @@ header .nav > div {
   height: 15rem;
 }
 .components .average .box {
-  background-color: #288fb4;
+  border: 1px solid #288fb4;
   overflow: hidden;
 }
