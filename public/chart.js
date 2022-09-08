@@ -52,8 +52,49 @@ export async function splitRecords() {
 }
 
 // ==================================================
-// SORT RECORD BY MONTH
+// SORT RECORD BY YEAR / MONTH / WEEK
 // ==================================================
+const currentDate = new Date();
+let month = currentDate.getMonth() + 1;
+let year = currentDate.getFullYear();
+const nameOfMonth = new Date().toLocaleString("default", { month: "long" });
+
+class DateSorter {
+  constructor() {}
+
+  async saveCurrentMonth() {
+    const records = await loadWeightData();
+    let currentMonthData = [];
+
+    const currentMonth = `${year}-${month < 10 ? `0${month}` : month}`;
+    console.log(currentMonth);
+
+    // trim date to smaller substring
+    records.forEach((record) => {
+      const trimDate = record.date.substring(0, 7);
+      // data for current month
+      const data = {
+        date: record.date,
+        weight: record.weight,
+      };
+      // save data if same to current month
+      if (trimDate === currentMonth) {
+        currentMonthData.push(data);
+      }
+    });
+
+    // separate date and weight
+    let date = [];
+    let weight = [];
+
+    currentMonthData.forEach((currData) => {
+      date.push(currData.date.substring(5, 10));
+      weight.push(currData.weight);
+    });
+
+    return { date, weight };
+  }
+}
 
 // ==================================================
 // CHART JS CANVAS
@@ -113,10 +154,10 @@ export class ChartGenerator {
     });
   }
   async generateCurrentMonth() {
-    const { date, weight } = await splitRecords();
-
-    const dateRecord = date.slice(-30);
-    const weightRecord = weight.slice(-30);
+    const myDate = new DateSorter();
+    const { date, weight } = await myDate.saveCurrentMonth();
+    console.log(date);
+    console.log(weight);
 
     const ctx = document.getElementById("chart-current-month").getContext("2d");
     ctx.canvas.width = document.body.offsetWidth;
@@ -125,11 +166,11 @@ export class ChartGenerator {
     this.currentMonth = new Chart(ctx, {
       type: "line",
       data: {
-        labels: dateRecord,
+        labels: date,
         datasets: [
           {
-            label: "PAST 30 DAYS RECORD",
-            data: weightRecord,
+            label: `RECORD FOR THE MONTH OF ${nameOfMonth.toUpperCase()}`,
+            data: weight,
             fill: false,
             backgroundColor: "rgba(255, 99, 132, 0.2)",
             borderColor: "rgba(255, 99, 132, 1)",
@@ -283,3 +324,9 @@ export class ChartGenerator {
     this.sixMonth.destroy();
   }
 }
+
+// ==================================================
+// DEBUG
+// ==================================================
+const myDate = new DateSorter();
+myDate.saveCurrentMonth();

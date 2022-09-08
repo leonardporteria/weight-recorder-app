@@ -73,9 +73,10 @@ header {
   .average {
     display: grid;
     gap: 2rem;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     width: 100%;
-    height: 15rem;
+    height: 60rem;
     .box {
       border: 1px solid $BLUE;
       overflow: hidden;
