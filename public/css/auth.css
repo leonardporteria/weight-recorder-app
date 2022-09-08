@@ -16,7 +16,7 @@ html {
 }
 
 body {
-  background-color: #fafeff;
+  background-color: hsl(0deg, 0%, 93%);
 }
 
 a {
@@ -95,7 +95,7 @@ body {
   padding: 0.5rem 1rem;
   border: 1px solid #1d556f;
   border-radius: 0.5rem;
-  background-color: #fafeff;
+  background-color: hsl(0deg, 0%, 93%);
   font-family: "Rubik", sans-serif;
 }
 .forms .register > a {
@@ -109,7 +109,7 @@ body {
 }
 .forms .register > a > p {
   font-family: "Rubik", sans-serif;
-  color: #fafeff;
+  color: hsl(0deg, 0%, 93%);
 }
 .forms .login {
   display: flex;
@@ -136,7 +136,7 @@ body {
   padding: 0.5rem 1rem;
   border: 1px solid #1d556f;
   border-radius: 0.5rem;
-  background-color: #fafeff;
+  background-color: hsl(0deg, 0%, 93%);
   font-family: "Rubik", sans-serif;
 }
 .forms .login > a {
@@ -150,7 +150,7 @@ body {
 }
 .forms .login > a > p {
   font-family: "Rubik", sans-serif;
-  color: #fafeff;
+  color: hsl(0deg, 0%, 93%);
 }
 
 .footer {
@@ -251,7 +251,7 @@ body {
   padding: 0.5rem 1rem;
   border: 1px solid #1d556f;
   border-radius: 1rem 0 0 1rem;
-  background-color: #fafeff;
+  background-color: hsl(0deg, 0%, 93%);
   font-family: "Rubik", sans-serif;
 }
 .footer .quicklinks__newsletter__input > button {
@@ -260,7 +260,7 @@ body {
   background-color: #1d556f;
   border-radius: 0 1rem 1rem 0;
   font-family: "Rubik", sans-serif;
-  color: #fafeff;
+  color: hsl(0deg, 0%, 93%);
 }
 .footer__division {
   margin: 1rem;
@@ -314,7 +314,7 @@ body {
   right: 0;
   margin: auto;
   padding: 1rem;
-  background-color: #fafeff;
+  background-color: hsl(0deg, 0%, 93%);
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
@@ -337,7 +337,7 @@ body {
   border-radius: 1rem;
   padding: 0.5rem;
   font-family: "Rubik", sans-serif;
-  color: #fafeff;
+  color: hsl(0deg, 0%, 93%);
 }
 
 .notif-off {

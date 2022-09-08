@@ -16,7 +16,7 @@ html {
 }
 
 body {
-  background-color: #fafeff;
+  background-color: hsl(0deg, 0%, 93%);
 }
 
 a {
@@ -73,7 +73,7 @@ h6 {
 }
 .header__auth > a > p {
   font-family: "Rubik", sans-serif;
-  color: #fafeff;
+  color: hsl(0deg, 0%, 93%);
 }
 
 .hero {
@@ -116,7 +116,7 @@ h6 {
 }
 .hero__content > a > p {
   font-family: "Rubik", sans-serif;
-  color: #fafeff;
+  color: hsl(0deg, 0%, 93%);
 }
 
 .about {
@@ -265,7 +265,7 @@ h6 {
   padding: 0.5rem 1rem;
   border: 1px solid #1d556f;
   border-radius: 1rem 0 0 1rem;
-  background-color: #fafeff;
+  background-color: hsl(0deg, 0%, 93%);
   font-family: "Rubik", sans-serif;
 }
 .footer .quicklinks__newsletter__input > button {
@@ -274,7 +274,7 @@ h6 {
   background-color: #1d556f;
   border-radius: 0 1rem 1rem 0;
   font-family: "Rubik", sans-serif;
-  color: #fafeff;
+  color: hsl(0deg, 0%, 93%);
 }
 .footer__division {
   margin: 1rem;

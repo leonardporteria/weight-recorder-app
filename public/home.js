@@ -29,7 +29,9 @@ async function setup() {
 
   // DOM variables
   const userUsername = document.querySelector(".user");
+  const userDetailsUsername = document.querySelector(".details-username");
   const userDetailsAge = document.querySelector(".details-age");
+  const userDetailsDOB = document.querySelector(".details-dob");
   const userDetailsHeight = document.querySelector(".details-height");
   const userDetailsWeight = document.querySelector(".details-weight");
   const userDetailsBMI = document.querySelector(".details-bmi");
@@ -47,7 +49,7 @@ async function setup() {
   //calculate bmi [weight / height[m]^2]
   const BMI = latestWeight / Math.pow(user.height / 100, 2);
 
-  // TODO: calculate age from string
+  // calculate age from string
   let dob = new Date(user.birthdate);
   let monthDiff = Date.now() - dob.getTime();
   let ageFullDay = new Date(monthDiff);
@@ -56,13 +58,15 @@ async function setup() {
 
   // setup user details
   userUsername.textContent = user.username;
-  userDetailsAge.textContent = `${user.birthdate} dob || age ${age}yrs old`;
-  userDetailsHeight.textContent = `height ${user.height}cm`;
-  userDetailsWeight.textContent = `latest weight ${latestWeight}kg`;
-  userDetailsBMI.textContent = `latest bmi ${BMI.toFixed(2)}`;
+  userDetailsUsername.textContent = `Welcome back, ${user.username}!`;
+  userDetailsAge.textContent = `You are ${age}yrs old today.`;
+  userDetailsDOB.textContent = `You are born on ${user.birthdate}`;
+  userDetailsHeight.textContent = `Your latest height is ${user.height}cm.`;
+  userDetailsWeight.textContent = `Your latest weight is ${latestWeight}kg.`;
+  userDetailsBMI.textContent = `Your latest BMI is ${BMI.toFixed(2)}.`;
 }
 
-setTimeout(setup, 500);
+setTimeout(setup, 100);
 
 // ==================================================
 // CHART JS OBJECT
@@ -72,8 +76,7 @@ const myChart = new ChartGenerator();
 myChart.generateCurrentWeek();
 myChart.generateCurrentMonth();
 myChart.generatePastMonth();
-myChart.generateThreeMonth();
-myChart.generateSixMonth();
+myChart.generateAllTime();
 
 // ==================================================
 // DATE INPUT EVENT LISTENER
@@ -125,22 +128,10 @@ submitBtn.addEventListener("click", async () => {
   myChart.destroyCurrentWeek();
   myChart.destroyCurrentMonth();
   myChart.destroyPastMonth();
-  myChart.destroyThreeMonth();
-  myChart.destroySixMonth();
+  myChart.destroyAllTime();
   // regenerate chart
   myChart.generateCurrentWeek();
   myChart.generateCurrentMonth();
   myChart.generatePastMonth();
-  myChart.generateThreeMonth();
-  myChart.generateSixMonth();
-});
-
-// ==================================================
-// DEBUG
-// ==================================================
-const debugButton = document.querySelector("#clickme");
-debugButton.addEventListener("click", async () => {
-  console.log("DEBUG");
-  await setup();
-  console.log(weightData);
+  myChart.generateAllTime();
 });

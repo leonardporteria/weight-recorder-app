@@ -67,7 +67,41 @@ class DateSorter {
     let currentMonthData = [];
 
     const currentMonth = `${year}-${month < 10 ? `0${month}` : month}`;
-    console.log(currentMonth);
+
+    // trim date to smaller substring
+    records.forEach((record) => {
+      const trimDate = record.date.substring(0, 7);
+      // data for current month
+      const data = {
+        date: record.date,
+        weight: record.weight,
+      };
+      // save data if same to current month
+      if (trimDate === currentMonth) {
+        currentMonthData.push(data);
+      }
+    });
+
+    // separate date and weight
+    let date = [];
+    let weight = [];
+
+    currentMonthData.forEach((currData) => {
+      date.push(currData.date.substring(5, 10));
+      weight.push(currData.weight);
+    });
+
+    return { date, weight };
+  }
+
+  async savePastMonth() {
+    const records = await loadWeightData();
+    const pastMonth = currentDate.getMonth();
+    let currentMonthData = [];
+
+    const currentMonth = `${year}-${
+      pastMonth < 10 ? `0${pastMonth}` : pastMonth
+    }`;
 
     // trim date to smaller substring
     records.forEach((record) => {
@@ -104,8 +138,7 @@ export class ChartGenerator {
     this.currentWeek;
     this.currentMonth;
     this.pastMonth;
-    this.threeMonth;
-    this.sixMonth;
+    this.allTime;
   }
 
   // ==================================================
@@ -129,7 +162,7 @@ export class ChartGenerator {
         labels: dateRecord,
         datasets: [
           {
-            label: "PAST 7 DAYS RECORD",
+            label: "LAST 7 RECORDS",
             data: weightRecord,
             fill: false,
             backgroundColor: "rgba(50, 0, 0, 0.1)",
@@ -156,8 +189,6 @@ export class ChartGenerator {
   async generateCurrentMonth() {
     const myDate = new DateSorter();
     const { date, weight } = await myDate.saveCurrentMonth();
-    console.log(date);
-    console.log(weight);
 
     const ctx = document.getElementById("chart-current-month").getContext("2d");
     ctx.canvas.width = document.body.offsetWidth;
@@ -194,7 +225,12 @@ export class ChartGenerator {
     });
   }
   async generatePastMonth() {
-    const { date, weight } = await splitRecords();
+    const current = new Date();
+    current.setMonth(current.getMonth() - 1);
+    const previousMonth = current.toLocaleString("default", { month: "long" });
+
+    const myDate = new DateSorter();
+    const { date, weight } = await myDate.savePastMonth();
 
     const ctx = document.getElementById("chart-past-month").getContext("2d");
     ctx.canvas.width = document.body.offsetWidth;
@@ -206,7 +242,7 @@ export class ChartGenerator {
         labels: date,
         datasets: [
           {
-            label: "Label ng chart",
+            label: `RECORD FOR THE MONTH OF ${previousMonth.toUpperCase()}`,
             data: weight,
             fill: false,
             backgroundColor: "rgba(255, 99, 132, 0.2)",
@@ -230,57 +266,20 @@ export class ChartGenerator {
       },
     });
   }
-  async generateThreeMonth() {
+  async generateAllTime() {
     const { date, weight } = await splitRecords();
 
-    const ctx = document.getElementById("chart-three-month").getContext("2d");
+    const ctx = document.getElementById("chart-all-time").getContext("2d");
     ctx.canvas.width = document.body.offsetWidth;
     ctx.canvas.height = window.innerHeight;
 
-    this.threeMonth = new Chart(ctx, {
-      type: "line",
+    this.allTime = new Chart(ctx, {
+      type: "bar",
       data: {
         labels: date,
         datasets: [
           {
-            label: "Label ng chart",
-            data: weight,
-            fill: false,
-            backgroundColor: "rgba(255, 99, 132, 0.2)",
-            borderColor: "rgba(255, 99, 132, 1)",
-            borderWidth: 1,
-            tension: 0.1,
-          },
-        ],
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true,
-            ticks: {
-              callback: function (value, index, ticks) {
-                return value + "kg";
-              },
-            },
-          },
-        },
-      },
-    });
-  }
-  async generateSixMonth() {
-    const { date, weight } = await splitRecords();
-
-    const ctx = document.getElementById("chart-six-month").getContext("2d");
-    ctx.canvas.width = document.body.offsetWidth;
-    ctx.canvas.height = window.innerHeight;
-
-    this.sixMonth = new Chart(ctx, {
-      type: "line",
-      data: {
-        labels: date,
-        datasets: [
-          {
-            label: "Label ng chart",
+            label: "ALL TIME WEIGHT",
             data: weight,
             fill: false,
             backgroundColor: "rgba(255, 99, 132, 0.2)",
@@ -317,11 +316,8 @@ export class ChartGenerator {
   destroyPastMonth() {
     this.pastMonth.destroy();
   }
-  destroyThreeMonth() {
-    this.threeMonth.destroy();
-  }
-  destroySixMonth() {
-    this.sixMonth.destroy();
+  destroyAllTime() {
+    this.allTime.destroy();
   }
 }
 
@@ -330,3 +326,4 @@ export class ChartGenerator {
 // ==================================================
 const myDate = new DateSorter();
 myDate.saveCurrentMonth();
+myDate.savePastMonth();

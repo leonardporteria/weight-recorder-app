@@ -25,53 +25,96 @@
       MAIN COMPONENTS
     ============================================================ -->
     <div class="components">
-      <!-- MAIN -->
+      <!-- INTRO -->
+      <div class="details">
+        <h1 class="details-username"></h1>
+        <p class="details-age"></p>
+        <p class="details-dob"></p>
+        <p class="details-height"></p>
+        <p class="details-weight"></p>
+        <p class="details-bmi"></p>
+        <!-- ADD LOWEST/HIGHEST ALLTIME, BEST BMI ETC.-->
+      </div>
+
+      <!-- MAIN COMPONENT -->
       <div class="main">
         <form>
+          <h1>INPUT WEIGHT DATA!</h1>
           <label for="weight">Weight</label>
           <input type="number" name="weight" id="weight" />
           <label for="date">Date</label>
           <input type="date" name="date" id="date" />
           <button id="submit" type="button">Submit</button>
-          <button id="clickme" type="button">click me</button>
         </form>
-        <div class="details">
-          <h1>User Details</h1>
-          <p class="details-age">age</p>
-          <p class="details-height">height</p>
-          <p class="details-weight">latest weight</p>
-          <p class="details-bmi">bmi</p>
-          <!-- ADD LOWEST/HIGHEST ALLTIME, BEST BMI ETC.-->
+        <!-- AVE CURR WEEK -->
+        <div class="stats">
+          <div class="stats-current-week">
+            <canvas id="chart-current-week"></canvas>
+          </div>
         </div>
       </div>
-      <!-- INCREASE / DECREASE -->
-      <div class="stats">
-        <div class="stats-current-week">
-          <canvas id="chart-current-week"></canvas>
-        </div>
-        <div class="stats-increase-decrease">
-          <p>increase or decrease</p>
-        </div>
-      </div>
+
       <!-- AVERAGES PER MONTH -->
       <div class="average">
         <div class="average-current-month box">
           <canvas id="chart-current-month"></canvas>
         </div>
         <div class="average-past-month box">
-          ave past month
           <canvas id="chart-past-month"></canvas>
         </div>
-        <div class="average-three-month box">
-          ave 3 mons
-          <canvas id="chart-three-month"></canvas>
-        </div>
-        <div class="average-six-month box">
-          ave 6 mons
-          <canvas id="chart-six-month"></canvas>
-        </div>
+      </div>
+
+      <!-- ALL TIME AVERAGE -->
+      <div class="all-time-average box">
+        <canvas id="chart-all-time"></canvas>
       </div>
     </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="quicklinks">
+        <div class="quicklinks__main">
+          <img src="./assets/logo_rect.svg" alt="" />
+          <h1>Keep track of your weight with Weight Recorder</h1>
+        </div>
+
+        <div class="quicklinks__socials">
+          <h1>Connect with us</h1>
+          <div class="quicklinks__socials__links">
+            <a href="">fb</a>
+            <a href="">twt</a>
+            <a href="">github</a>
+          </div>
+        </div>
+
+        <div class="quicklinks__contact">
+          <h1>Contact us</h1>
+          <div class="quicklinks__contact__links">
+            <a href="">email</a>
+            <a href="">mobile</a>
+            <a href="">phone</a>
+          </div>
+        </div>
+
+        <div class="quicklinks__newsletter">
+          <h1>Newsletter</h1>
+          <p>Subscribe to get the latest update!</p>
+          <div class="quicklinks__newsletter__input">
+            <input type="text" placeholder="user@domain.com" />
+            <button>Submit</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__division"></div>
+      <h1 class="footer__copyright">
+        © Copyright | All Rights Reserved | August 2022 — Designed and Developed
+        by
+        <a href="https://github.com/leonardporteria" target="_blank"
+          >Leonard Porteria</a
+        >
+      </h1>
+    </footer>
 
     <script type="module" src="./home.js"></script>
   </body>

@@ -39,55 +39,238 @@ header {
   padding: 2rem;
   display: grid;
   gap: 2rem;
-  // main
+  // INTRO
+  .details {
+    padding: 2rem;
+    border-radius: 2rem;
+    background-color: $WHITE;
+    height: 15rem;
+    > h1 {
+      font-family: $RUBIK;
+      font-size: 2rem;
+      font-weight: 600;
+      color: $DARK_BLUE;
+    }
+    > p {
+      font-family: $RUBIK;
+      font-size: 1rem;
+      font-weight: 400;
+      color: $BLACK;
+    }
+  }
   .main {
     display: grid;
+    grid-template-columns: 1fr 2fr;
     gap: 2rem;
-    grid-template-columns: 1.5fr 2.5fr;
-    width: 100%;
-    height: 15rem;
+    height: auto;
+    // INPUT DATA
     > form {
-      border: 1px solid $BLUE;
       display: flex;
       flex-direction: column;
+      padding: 2rem;
+      border-radius: 2rem;
+      align-items: center;
+      background-color: $DARK_BLUE;
+      > h1 {
+        padding: 2rem;
+        font-family: $RUBIK;
+        font-size: 2rem;
+        font-weight: 400;
+        text-align: center;
+        color: $BASE_LIGHT;
+      }
+      > label {
+        margin-top: 2rem;
+        font-family: $OPEN_SANS;
+        color: $BASE_LIGHT;
+      }
+      > input {
+        width: 20rem;
+        padding: 0.5rem 1rem;
+        border: 1px solid $DARK_BLUE;
+        border-radius: 0.5rem;
+        font-family: $RUBIK;
+        background-color: $BASE_LIGHT;
+      }
+      > button {
+        cursor: pointer;
+        margin-top: 1rem;
+        height: 3rem;
+        width: 7rem;
+        border: 1px $BASE_LIGHT solid;
+        border-radius: 2rem;
+        font-family: $RUBIK;
+        font-size: 1rem;
+        color: $BASE_LIGHT;
+        background-color: $DARK_BLUE;
+      }
     }
-    .details {
-      border: 1px solid $BLUE;
+    // WEEK AVERAGE
+    .stats {
+      height: 100%;
+      .stats-current-week {
+        padding: 2rem;
+        border-radius: 2rem;
+        background-color: $WHITE;
+      }
     }
   }
-  // increase / decrease
-  .stats {
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: 2.5fr 1.5fr;
-    width: 100%;
-    height: 25rem;
-    .stats-current-week {
-      border: 1px solid $BLUE;
-    }
-    .stats-increase-decrease {
-      border: 1px solid $BLUE;
-    }
-  }
+
   // averages per month
   .average {
     display: grid;
     gap: 2rem;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
     width: 100%;
-    height: 60rem;
+    height: auto;
     .box {
-      border: 1px solid $BLUE;
+      padding: 2rem;
+      border-radius: 2rem;
+      background-color: $WHITE;
       overflow: hidden;
     }
     .average-current-month {
     }
     .average-past-month {
     }
-    .average-three-month {
+  }
+  .all-time-average {
+    padding: 2rem;
+    border-radius: 2rem;
+    background-color: $WHITE;
+    overflow: hidden;
+  }
+}
+
+// ==================================================
+// FOOTER
+// ==================================================
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2rem;
+  background-color: $WHITE;
+  .quicklinks {
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    &__main {
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: flex-start;
+      > img {
+        width: 15rem;
+      }
+      > h1 {
+        margin-top: 1rem;
+        padding-right: 1rem;
+        font-family: $OPEN_SANS;
+        font-size: 1rem;
+        font-weight: 400;
+        color: $DIMMED_LIGHT;
+      }
     }
-    .average-six-month {
+    &__socials {
+      padding: 1.25rem 0 0 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: flex-start;
+      > h1 {
+        font-family: $OPEN_SANS;
+        font-size: 1.5rem;
+      }
+      &__links {
+        display: flex;
+        flex-direction: column;
+        margin-top: 1rem;
+        > a {
+          margin: 0.5rem 0;
+          color: $DIMMED_LIGHT;
+          font-family: $RUBIK;
+        }
+      }
+    }
+    &__contact {
+      padding: 1.25rem 0 0 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: flex-start;
+      > h1 {
+        font-family: $OPEN_SANS;
+        font-size: 1.5rem;
+      }
+      &__links {
+        display: flex;
+        flex-direction: column;
+        margin-top: 1rem;
+        > a {
+          margin: 0.5rem 0;
+          color: $DIMMED_LIGHT;
+          font-family: $RUBIK;
+        }
+      }
+    }
+    &__newsletter {
+      padding: 1.25rem 0 0 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: flex-start;
+      > h1 {
+        font-family: $OPEN_SANS;
+        font-size: 1.5rem;
+      }
+      > p {
+        padding: 2rem 0;
+        font-family: $OPEN_SANS;
+        font-size: 1rem;
+        font-weight: 400;
+        color: $DIMMED_LIGHT;
+      }
+      &__input {
+        width: 80%;
+        display: grid;
+        grid-template-columns: 2fr 0.75fr;
+        > input {
+          padding: 0.5rem 1rem;
+          border: 1px solid $DARK_BLUE;
+          border-radius: 1rem 0 0 1rem;
+          background-color: $BASE_LIGHT;
+          font-family: $RUBIK;
+        }
+        > button {
+          cursor: pointer;
+          border: 1px solid $DARK_BLUE;
+          background-color: $DARK_BLUE;
+          border-radius: 0 1rem 1rem 0;
+          font-family: $RUBIK;
+          color: $BASE_LIGHT;
+        }
+      }
+    }
+  }
+  &__division {
+    margin: 1rem;
+    width: 90vw;
+    height: 1px;
+    background-color: $DARK_BLUE;
+  }
+  &__copyright {
+    margin-bottom: 1rem;
+    text-align: center;
+    font-family: $OPEN_SANS;
+    font-weight: 400;
+    font-size: 1rem;
+    color: $DARK_BLUE;
+    > a {
+      color: $DARK_BLUE;
+      font-weight: 600;
     }
   }
 }
