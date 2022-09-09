@@ -29,7 +29,6 @@ export async function hasRecorded(records, userDate) {
     const trimDate = record.date.substring(0, 10);
     if (trimDate === userDate) return true;
   });
-
   return hasData;
 }
 

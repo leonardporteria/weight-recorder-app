@@ -16,9 +16,13 @@
     <header>
       <img src="./assets/logo_rect.svg" alt="Weight Recorder Logo" />
       <div class="nav">
-        <img src="./assets/notif.png" alt="notif-bell" />
-        <h1 class="user">User</h1>
-        <div>▼</div>
+        <a href="#">
+          <img src="./assets/settings.png" class="settings-btn" />
+        </a>
+        <h1 class="user"></h1>
+        <a href="/auth">
+          <img src="./assets/logout.png" class="logout-btn" />
+        </a>
       </div>
     </header>
     <!-- ============================================================
@@ -39,7 +43,7 @@
       <!-- MAIN COMPONENT -->
       <div class="main">
         <form>
-          <h1>INPUT WEIGHT DATA!</h1>
+          <h1 class="form-header">INPUT WEIGHT DATA!</h1>
           <label for="weight">Weight</label>
           <input type="number" name="weight" id="weight" />
           <label for="date">Date</label>

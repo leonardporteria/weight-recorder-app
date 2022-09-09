@@ -12,10 +12,12 @@ header {
     display: flex;
     flex-direction: row;
     align-items: center;
-    > img {
+    > a {
       cursor: pointer;
-      width: 1.5rem;
-      height: 1.5rem;
+      > img {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
     }
     > h1 {
       cursor: pointer;
@@ -23,10 +25,6 @@ header {
       font-family: $OPEN_SANS;
       font-weight: 500;
       font-size: 1.5rem;
-      color: $DARK_BLUE;
-    }
-    > div {
-      cursor: pointer;
       color: $DARK_BLUE;
     }
   }

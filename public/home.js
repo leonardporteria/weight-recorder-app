@@ -69,28 +69,27 @@ async function setup() {
 setTimeout(setup, 100);
 
 // ==================================================
-// CHART JS OBJECT
-// ==================================================
-const myChart = new ChartGenerator();
-
-myChart.generateCurrentWeek();
-myChart.generateCurrentMonth();
-myChart.generatePastMonth();
-myChart.generateAllTime();
-
-// ==================================================
 // DATE INPUT EVENT LISTENER
 // ==================================================
 dateInputElement.addEventListener("change", async (e) => {
+  const formHeader = document.querySelector(".form-header");
+  const submitBtn = document.querySelector("#submit");
   const userData = await loadWeightData();
-
-  console.log(e.target.value);
 
   const hasData = await hasRecorded(userData, e.target.value);
   if (hasData) {
-    console.log("you already has data for that day");
-    // TODO: DISABLE SUBMIT BTN
+    formHeader.textContent = "Already Logged on that Day";
+    submitBtn.style.pointerEvents = "none";
+    submitBtn.style.border = "1px #fa360a solid";
+    submitBtn.style.color = "#fa360a";
+
+    return;
   }
+
+  formHeader.textContent = "Input Weight Data!";
+  submitBtn.style.pointerEvents = "all";
+  submitBtn.style.border = "1px hsl(0, 0%, 93%) solid";
+  submitBtn.style.color = "hsl(0, 0%, 93%)";
 });
 
 // ==================================================
@@ -135,3 +134,21 @@ submitBtn.addEventListener("click", async () => {
   myChart.generatePastMonth();
   myChart.generateAllTime();
 });
+
+// ==================================================
+// CHART JS OBJECT
+// ==================================================
+const myChart = new ChartGenerator();
+
+myChart.generateCurrentWeek();
+myChart.generateCurrentMonth();
+myChart.generatePastMonth();
+myChart.generateAllTime();
+
+// ==================================================
+// LOGOUT
+// ==================================================
+
+// ==================================================
+// PATH TO DASHBOARD
+// ==================================================
