@@ -42,6 +42,10 @@ app.get("/dashboard", (req, res) => {
   res.sendFile("./public/dashboard.html", { root: __dirname });
 });
 
+app.get("/404", (req, res) => {
+  res.status(404).sendFile("./public/404.html", { root: __dirname });
+});
+
 // ==================================================
 // DATABASE [NeDB]
 // ==================================================
@@ -93,7 +97,12 @@ app.get("/record", (request, response) => {
       response.end();
       return;
     }
-    response.json(data[0].record);
+
+    try {
+      response.json(data[0].record);
+    } catch (error) {
+      console.log("ERROR AT RECORD API: GET METHOD");
+    }
   });
 });
 app.post("/record", (request, response) => {

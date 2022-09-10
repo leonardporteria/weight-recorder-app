@@ -53,13 +53,14 @@ header .nav > a > img {
   width: 1.5rem;
   height: 1.5rem;
 }
-header .nav > h1 {
+header .nav .user {
   cursor: pointer;
   margin: 0 2rem;
   font-family: "Open Sans", sans-serif;
   font-weight: 500;
   font-size: 1.5rem;
   color: #1d556f;
+  overflow: hidden;
 }
 
 .components {

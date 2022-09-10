@@ -2,6 +2,23 @@ import { loadWeightData, hasRecorded } from "./chart.js";
 import { ChartGenerator } from "./chart.js";
 
 // ==================================================
+// CHECK USER EXISTENCE
+// ==================================================
+async function hasUser() {
+  // fetch user
+  const response = await fetch("/saveData");
+  const user = await response.json();
+  console.log("HAS USER");
+  console.log(user);
+
+  if (Object.keys(user).length === 0) {
+    console.log("mt");
+    location.replace("./404");
+  }
+}
+hasUser();
+
+// ==================================================
 // GLOBAL VARIABLES
 // ==================================================
 const today = new Date();
@@ -98,6 +115,9 @@ dateInputElement.addEventListener("change", async (e) => {
 submitBtn.addEventListener("click", async () => {
   const weight = document.querySelector("#weight").value;
   const date = document.querySelector("#date").value;
+
+  console.log("clik");
+
   if (!weight || !date) return;
 
   // METHOD
@@ -133,6 +153,13 @@ submitBtn.addEventListener("click", async () => {
   myChart.generateCurrentMonth();
   myChart.generatePastMonth();
   myChart.generateAllTime();
+
+  // remove submit btn pointer events
+  console.log("cliked");
+  document.querySelector("#submit").style.pointerEvents = "none";
+  document.querySelector(
+    ".form-header"
+  ).textContent = `Today's Log was Successful!`;
 });
 
 // ==================================================
@@ -146,9 +173,27 @@ myChart.generatePastMonth();
 myChart.generateAllTime();
 
 // ==================================================
-// LOGOUT
+// CONFIG / SETTINGS
 // ==================================================
 
 // ==================================================
-// PATH TO DASHBOARD
+// LOGOUT
 // ==================================================
+const logoutBtn = document.querySelector(".logout-btn");
+
+async function logout() {
+  let user;
+
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  };
+  await fetch("/saveData", options);
+}
+
+logoutBtn.addEventListener("click", async () => {
+  logout();
+});

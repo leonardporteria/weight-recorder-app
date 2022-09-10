@@ -19,13 +19,14 @@ header {
         height: 1.5rem;
       }
     }
-    > h1 {
+    .user {
       cursor: pointer;
       margin: 0 2rem;
       font-family: $OPEN_SANS;
       font-weight: 500;
       font-size: 1.5rem;
       color: $DARK_BLUE;
+      overflow: hidden;
     }
   }
 }
