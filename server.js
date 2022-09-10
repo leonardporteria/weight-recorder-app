@@ -116,6 +116,40 @@ app.post("/record", (request, response) => {
   response.json(data);
 });
 
+// UPDATE HEIGHT
+app.get("/updateHeight", (request, response) => {
+  database.find({}, (err, data) => {
+    if (err) {
+      response.end();
+      return;
+    }
+    const user = USER_DATA;
+    response.json(user);
+  });
+});
+
+app.post("/updateHeight", (request, response) => {
+  console.log("Server got a request!");
+  let newHeight = request.body;
+  console.log(USER_DATA.username);
+
+  database.update(
+    { username: USER_DATA.username },
+    { $set: { height: newHeight.height } },
+    (err, numReplaced) => {
+      if (err) {
+        response.end();
+        console.log(err);
+        return;
+      }
+    }
+  );
+
+  response.json(USER_DATA);
+});
+
+// UPDATE WEIGHT
+
 // ==================================================
 // ERROR 404 PAGE
 // ==================================================

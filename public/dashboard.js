@@ -26,6 +26,7 @@ async function saveWeightData() {
   weightData = await loadWeightData();
 }
 saveWeightData();
+
 async function setup() {
   // fetch user
   const response = await fetch("/saveData");
@@ -62,8 +63,44 @@ async function setup() {
   userDetailsAge.textContent = `Age: ${age}yrs old`;
   userDetailsDOB.textContent = `Birthdate: ${user.birthdate}`;
   userDetailsHeight.textContent = `Height: ${user.height}cm`;
-}
 
+  // UPDATE USER DETAILS [HEIGHT]
+  const updateHeightBtn = document.querySelector(".edit-details");
+  const saveHeightBtn = document.querySelector(".save-details");
+  let updatedHeight;
+
+  // edit btn
+  updateHeightBtn.addEventListener("click", async () => {
+    userDetailsHeight.innerHTML = `<input  type="number" class="details-height-input" placeholder="Input New Height [cm]">`;
+    const heightInput = document.querySelector(".details-height-input");
+    heightInput.style.width = "12rem";
+    heightInput.style.padding = "0.5rem 1rem";
+    heightInput.style.border = "1px solid #1d556f";
+    heightInput.style.borderRadius = "0.5rem";
+    heightInput.style.backgroundColor = "hsl(0, 0%, 97%)";
+    heightInput.style.fontFamily = `"Rubik", sans-serif`;
+
+    // save new height
+    heightInput.addEventListener("change", async (e) => {
+      updatedHeight = e.target.value;
+    });
+  });
+
+  // save btn
+  saveHeightBtn.addEventListener("click", async () => {
+    userDetailsHeight.innerHTML = `Height: ${updatedHeight}cm`;
+
+    // POST NEW HEIGHT
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ height: updatedHeight }),
+    };
+    await fetch("/updateHeight", options);
+  });
+}
 setTimeout(setup, 100);
 
 // ==================================================
@@ -90,7 +127,7 @@ async function generateRecords() {
     // create html elements
     const weightData = document.createElement("div");
     const dataDate = document.createElement("p");
-    const dataWeigt = document.createElement("p");
+    const dataWeight = document.createElement("p");
     const dataBMI = document.createElement("p");
     const dataEdit = document.createElement("div");
     const dataEditImg = document.createElement("img");
@@ -101,14 +138,16 @@ async function generateRecords() {
 
     // assign class names to elements
     weightData.classList.add("weight-data");
-    weightData.classList.add(`${userDate}`);
     dataDate.classList.add("weight-data-date");
-    dataWeigt.classList.add("weight-data-weight");
+    dataWeight.classList.add("weight-data-weight");
+    dataWeight.classList.add(`weight-${userDate}`);
     dataBMI.classList.add("weight-data-bmi");
     dataEdit.classList.add("weight-data-edit");
+    dataEdit.classList.add(`edit-${userDate}`);
     dataEditImg.classList.add("weight-data-edit-img");
     dataEditHeading.classList.add("weight-data-edit-heading");
     dataSave.classList.add("weight-data-save");
+    dataSave.classList.add(`save-${userDate}`);
     dataSaveImg.classList.add("weight-data-save-img");
     dataSaveHeading.classList.add("weight-data-save-heading");
 
@@ -120,7 +159,7 @@ async function generateRecords() {
 
     // append whole row
     weightData.appendChild(dataDate);
-    weightData.appendChild(dataWeigt);
+    weightData.appendChild(dataWeight);
     weightData.appendChild(dataBMI);
     weightData.appendChild(dataEdit);
     weightData.appendChild(dataSave);
@@ -130,12 +169,30 @@ async function generateRecords() {
 
     // value change
     dataDate.textContent = userDate;
-    dataWeigt.textContent = `${userWeight}kg`;
+    dataWeight.textContent = `${userWeight}kg`;
     dataBMI.textContent = userBMI.toFixed(2);
     dataEditImg.src = "./assets/edit.png";
     dataEditHeading.textContent = `Update`;
     dataSaveImg.src = "./assets/save.png";
     dataSaveHeading.textContent = `Save`;
+  });
+
+  // EVENT LISTENERS
+  records.forEach((record) => {
+    const dateRecorded = record.date;
+    const userDate = dateRecorded.substring(0, 10);
+
+    const weightElm = document.querySelector(`.weight-${userDate}`);
+    const editBtn = document.querySelector(`.edit-${userDate}`);
+    const saveBtn = document.querySelector(`.save-${userDate}`);
+
+    editBtn.addEventListener("click", () => {
+      console.log(userDate);
+    });
+
+    saveBtn.addEventListener("click", () => {
+      console.log(weightElm.textContent);
+    });
   });
 }
 generateRecords();
