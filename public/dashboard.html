@@ -5,19 +5,120 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/dashboard.css" />
-    <title>Dashboard</title>
+    <link rel="shortcut icon" href="./assets/logo_sqr.svg" />
+    <title>Weight Recorder Dashboard</title>
   </head>
   <body>
-    <header class="header">
-      <a href="./" class="header__title">Weight Recorder</a>
-      <nav class="header__navlinks">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#features">Features</a>
-        <a href="#feedback">Feedback</a>
-      </nav>
+    <!-- ============================================================
+      HEADER
+    ============================================================ -->
+    <header>
+      <img src="./assets/logo_rect.svg" alt="Weight Recorder Logo" />
+      <div class="nav">
+        <a class="user"> </a>
+        <a href="/home">
+          <img src="./assets/home.png" class="home-btn" />
+        </a>
+      </div>
     </header>
 
-    <script src="./dashboard.js"></script>
+    <!-- ============================================================
+      MAIN COMPONENTS
+    ============================================================ -->
+    <div class="components">
+      <div class="details">
+        <h1 class="details-username"></h1>
+        <h1>Edit you Information and Data within this page.</h1>
+        <p class="details-age"></p>
+        <p class="details-dob"></p>
+        <p class="details-height"></p>
+
+        <div class="update-details">
+          <div class="edit-details">
+            <img src="./assets/edit.png" />
+            <h1>Update Height</h1>
+          </div>
+          <div class="save-details">
+            <img src="./assets/save.png" />
+            <h1>Save</h1>
+          </div>
+        </div>
+      </div>
+
+      <div class="weight">
+        <h1>TABLE OF RECORDS</h1>
+        <div class="weight-header">
+          <p>Date [yyyy/mm/dd]</p>
+          <p>Weight [kg]</p>
+          <p>BMI</p>
+          <p>Update</p>
+          <p>Save</p>
+        </div>
+        <!-- TABLE DATA TEMPLATE
+          <div class="weight-data">
+          <p class="weight-data-date">Date</p>
+          <p class="weight-data-weight">Weight</p>
+          <p class="weight-data-bmi">BMI</p>
+          <div class="weight-data-edit">
+            <img src="./assets/edit.png" class="weight-data-edit-img" />
+            <h1 class="weight-data-edit-heading">Update</h1>
+          </div>
+          <div class="weight-data-save">
+            <img src="./assets/save.png" class="weight-data-save-img" />
+            <h1 class="weight-data-save-heading">Save</h1>
+          </div>
+        </div> -->
+      </div>
+    </div>
+
+    <!-- ============================================================
+      FOOTER
+    ============================================================ -->
+    <footer class="footer">
+      <div class="quicklinks">
+        <div class="quicklinks__main">
+          <img src="./assets/logo_rect.svg" alt="" />
+          <h1>Keep track of your weight with Weight Recorder</h1>
+        </div>
+
+        <div class="quicklinks__socials">
+          <h1>Connect with us</h1>
+          <div class="quicklinks__socials__links">
+            <a href="">fb</a>
+            <a href="">twt</a>
+            <a href="">github</a>
+          </div>
+        </div>
+
+        <div class="quicklinks__contact">
+          <h1>Contact us</h1>
+          <div class="quicklinks__contact__links">
+            <a href="">email</a>
+            <a href="">mobile</a>
+            <a href="">phone</a>
+          </div>
+        </div>
+
+        <div class="quicklinks__newsletter">
+          <h1>Newsletter</h1>
+          <p>Subscribe to get the latest update!</p>
+          <div class="quicklinks__newsletter__input">
+            <input type="text" placeholder="user@domain.com" />
+            <button>Submit</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__division"></div>
+      <h1 class="footer__copyright">
+        © Copyright | All Rights Reserved | August 2022 — Designed and Developed
+        by
+        <a href="https://github.com/leonardporteria" target="_blank"
+          >Leonard Porteria</a
+        >
+      </h1>
+    </footer>
+
+    <script type="module" src="./dashboard.js"></script>
   </body>
 </html>

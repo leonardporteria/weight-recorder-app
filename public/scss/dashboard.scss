@@ -1,24 +1,325 @@
 @import "variables";
 @import "global";
 
-.header {
+// ==================================================
+// HEADER
+// ==================================================
+header {
   padding: 2rem;
   display: flex;
-  justify-content: space-around;
-  &__title {
-    width: 25%;
-    display: flex;
-    justify-content: center;
-    text-decoration: none;
-    cursor: pointer;
+  justify-content: space-between;
+  > img {
+    width: 12rem;
   }
-  &__navlinks {
-    width: 50%;
+  .nav {
     display: flex;
-    justify-content: space-around;
+    flex-direction: row;
+    align-items: center;
     > a {
-      text-decoration: none;
       cursor: pointer;
+      > img {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+    .user {
+      cursor: pointer;
+      margin: 0 2rem;
+      font-family: $OPEN_SANS;
+      font-weight: 500;
+      font-size: 1.5rem;
+      color: $DARK_BLUE;
+      overflow: hidden;
+    }
+  }
+}
+
+// ==================================================
+// MAIN COMPONENTS
+// ==================================================
+.components {
+  display: grid;
+  gap: 2rem;
+  padding: 2rem;
+  .details {
+    padding: 2rem;
+    border-radius: 2rem;
+    background-color: $WHITE;
+    height: 20rem;
+    > h1 {
+      font-family: $RUBIK;
+      font-size: 2rem;
+      font-weight: 600;
+      color: $DARK_BLUE;
+    }
+    > p {
+      margin-top: 1rem;
+      font-family: $RUBIK;
+      font-size: 1rem;
+      font-weight: 400;
+      color: $BLACK;
+    }
+    .update-details {
+      margin-top: 1rem;
+      display: flex;
+      .edit-details {
+        cursor: pointer;
+        width: auto;
+        height: 2rem;
+        padding: 0 1rem;
+        margin-right: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        background-color: $BASE_LIGHT;
+        > img {
+          margin-right: 0.5rem;
+          width: 1rem;
+          height: 1rem;
+        }
+        > h1 {
+          font-family: $RUBIK;
+          font-size: 1rem;
+          font-weight: 400;
+        }
+      }
+      .save-details {
+        cursor: pointer;
+        width: auto;
+        height: 2rem;
+        padding: 0 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        background-color: $BASE_LIGHT;
+        > img {
+          margin-right: 0.5rem;
+          width: 1rem;
+          height: 1rem;
+        }
+        > h1 {
+          font-family: $RUBIK;
+          font-size: 1rem;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+
+  .weight {
+    padding: 2rem;
+    border-radius: 2rem;
+    background-color: $WHITE;
+    display: grid;
+    gap: 1.25rem;
+    > h1 {
+      justify-self: center;
+      font-family: $RUBIK;
+      font-size: 2rem;
+      font-weight: 600;
+      color: $DARK_BLUE;
+    }
+    .weight-header {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr) repeat(2, 0.5fr);
+      > p {
+        font-family: $OPEN_SANS;
+        font-size: 1rem;
+        font-weight: 700;
+      }
+      > p:nth-child(4),
+      > p:nth-child(5) {
+        justify-self: center;
+      }
+    }
+    .weight-data {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr) repeat(2, 0.5fr);
+      > p {
+        align-self: center;
+        font-family: $RUBIK;
+        font-size: 1rem;
+        font-weight: 400;
+      }
+      .weight-data-edit {
+        cursor: pointer;
+        width: auto;
+        height: 2rem;
+        margin: 0 0.25rem;
+        padding: 0 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        background-color: $BASE_LIGHT;
+        > img {
+          margin-right: 0.5rem;
+          width: 1rem;
+          height: 1rem;
+        }
+        > h1 {
+          font-family: $RUBIK;
+          font-size: 1rem;
+          font-weight: 400;
+        }
+      }
+      .weight-data-save {
+        cursor: pointer;
+        width: auto;
+        height: 2rem;
+        padding: 0 1rem;
+        margin: 0 0.25rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        background-color: $BASE_LIGHT;
+        > img {
+          margin-right: 0.5rem;
+          width: 1rem;
+          height: 1rem;
+        }
+        > h1 {
+          font-family: $RUBIK;
+          font-size: 1rem;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+}
+
+// ==================================================
+// FOOTER
+// ==================================================
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2rem;
+  background-color: $WHITE;
+  .quicklinks {
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    &__main {
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: flex-start;
+      > img {
+        width: 15rem;
+      }
+      > h1 {
+        margin-top: 1rem;
+        padding-right: 1rem;
+        font-family: $OPEN_SANS;
+        font-size: 1rem;
+        font-weight: 400;
+        color: $DIMMED_LIGHT;
+      }
+    }
+    &__socials {
+      padding: 1.25rem 0 0 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: flex-start;
+      > h1 {
+        font-family: $OPEN_SANS;
+        font-size: 1.5rem;
+      }
+      &__links {
+        display: flex;
+        flex-direction: column;
+        margin-top: 1rem;
+        > a {
+          margin: 0.5rem 0;
+          color: $DIMMED_LIGHT;
+          font-family: $RUBIK;
+        }
+      }
+    }
+    &__contact {
+      padding: 1.25rem 0 0 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: flex-start;
+      > h1 {
+        font-family: $OPEN_SANS;
+        font-size: 1.5rem;
+      }
+      &__links {
+        display: flex;
+        flex-direction: column;
+        margin-top: 1rem;
+        > a {
+          margin: 0.5rem 0;
+          color: $DIMMED_LIGHT;
+          font-family: $RUBIK;
+        }
+      }
+    }
+    &__newsletter {
+      padding: 1.25rem 0 0 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: flex-start;
+      > h1 {
+        font-family: $OPEN_SANS;
+        font-size: 1.5rem;
+      }
+      > p {
+        padding: 2rem 0;
+        font-family: $OPEN_SANS;
+        font-size: 1rem;
+        font-weight: 400;
+        color: $DIMMED_LIGHT;
+      }
+      &__input {
+        width: 80%;
+        display: grid;
+        grid-template-columns: 2fr 0.75fr;
+        > input {
+          padding: 0.5rem 1rem;
+          border: 1px solid $DARK_BLUE;
+          border-radius: 1rem 0 0 1rem;
+          background-color: $WHITE;
+          font-family: $RUBIK;
+        }
+        > button {
+          cursor: pointer;
+          border: 1px solid $DARK_BLUE;
+          background-color: $DARK_BLUE;
+          border-radius: 0 1rem 1rem 0;
+          font-family: $RUBIK;
+          color: $BASE_LIGHT;
+        }
+      }
+    }
+  }
+  &__division {
+    margin: 1rem;
+    width: 90vw;
+    height: 1px;
+    background-color: $DARK_BLUE;
+  }
+  &__copyright {
+    margin-bottom: 1rem;
+    text-align: center;
+    font-family: $OPEN_SANS;
+    font-weight: 400;
+    font-size: 1rem;
+    color: $DARK_BLUE;
+    > a {
+      color: $DARK_BLUE;
+      font-weight: 600;
     }
   }
 }
