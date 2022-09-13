@@ -149,6 +149,51 @@ app.post("/updateHeight", (request, response) => {
 });
 
 // UPDATE WEIGHT
+app.get("/updateWeight", (request, response) => {
+  database.find({}, (err, data) => {
+    if (err) {
+      response.end();
+      return;
+    }
+    const user = USER_DATA;
+    response.json(user);
+  });
+});
+
+app.post("/updateWeight", (request, response) => {
+  console.log("Server got a request to update weight!");
+  let { date, weight, oldWeight } = request.body;
+  console.log(date, weight, oldWeight);
+  console.log(USER_DATA.username);
+
+  // pull old weight data
+  database.update(
+    { username: USER_DATA.username },
+    { $pull: { record: { date: date, weight: oldWeight } } },
+    (err, numReplaced) => {
+      if (err) {
+        response.end();
+        console.log(err);
+        return;
+      }
+    }
+  );
+
+  // push new weight data
+  database.update(
+    { username: USER_DATA.username },
+    { $push: { record: { date: date, weight: weight } } },
+    (err, numReplaced) => {
+      if (err) {
+        response.end();
+        console.log(err);
+        return;
+      }
+    }
+  );
+
+  response.json(USER_DATA);
+});
 
 // ==================================================
 // ERROR 404 PAGE

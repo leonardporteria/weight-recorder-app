@@ -63,43 +63,6 @@ async function setup() {
   userDetailsAge.textContent = `Age: ${age}yrs old`;
   userDetailsDOB.textContent = `Birthdate: ${user.birthdate}`;
   userDetailsHeight.textContent = `Height: ${user.height}cm`;
-
-  // UPDATE USER DETAILS [HEIGHT]
-  const updateHeightBtn = document.querySelector(".edit-details");
-  const saveHeightBtn = document.querySelector(".save-details");
-  let updatedHeight;
-
-  // edit btn
-  updateHeightBtn.addEventListener("click", async () => {
-    userDetailsHeight.innerHTML = `<input  type="number" class="details-height-input" placeholder="Input New Height [cm]">`;
-    const heightInput = document.querySelector(".details-height-input");
-    heightInput.style.width = "12rem";
-    heightInput.style.padding = "0.5rem 1rem";
-    heightInput.style.border = "1px solid #1d556f";
-    heightInput.style.borderRadius = "0.5rem";
-    heightInput.style.backgroundColor = "hsl(0, 0%, 97%)";
-    heightInput.style.fontFamily = `"Rubik", sans-serif`;
-
-    // save new height
-    heightInput.addEventListener("change", async (e) => {
-      updatedHeight = e.target.value;
-    });
-  });
-
-  // save btn
-  saveHeightBtn.addEventListener("click", async () => {
-    userDetailsHeight.innerHTML = `Height: ${updatedHeight}cm`;
-
-    // POST NEW HEIGHT
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ height: updatedHeight }),
-    };
-    await fetch("/updateHeight", options);
-  });
 }
 setTimeout(setup, 100);
 
@@ -177,7 +140,9 @@ async function generateRecords() {
     dataSaveHeading.textContent = `Save`;
   });
 
-  // EVENT LISTENERS
+  // ==================================================
+  // UPDATE USER WEIGHT
+  // ==================================================
   records.forEach((record) => {
     const dateRecorded = record.date;
     const userDate = dateRecorded.substring(0, 10);
@@ -186,13 +151,84 @@ async function generateRecords() {
     const editBtn = document.querySelector(`.edit-${userDate}`);
     const saveBtn = document.querySelector(`.save-${userDate}`);
 
+    let updatedWeight;
+
     editBtn.addEventListener("click", () => {
       console.log(userDate);
+      console.log(updatedWeight);
+
+      weightElm.innerHTML = `<input  type="number" class="details-weight-input" placeholder="Input New Height [cm]">`;
+      const weightInput = document.querySelector(".details-weight-input");
+      weightInput.style.width = "12rem";
+      weightInput.style.padding = "0.25rem 1rem";
+      weightInput.style.border = "1px solid #1d556f";
+      weightInput.style.borderRadius = "0.5rem";
+      weightInput.style.backgroundColor = "hsl(0, 0%, 97%)";
+      weightInput.style.fontFamily = `"Rubik", sans-serif`;
+
+      // save new weight
+      weightInput.addEventListener("change", async (e) => {
+        updatedWeight = e.target.value;
+      });
     });
 
-    saveBtn.addEventListener("click", () => {
-      console.log(weightElm.textContent);
+    saveBtn.addEventListener("click", async () => {
+      console.log(updatedWeight);
+      weightElm.innerHTML = `${updatedWeight}kg`;
+
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          date: dateRecorded,
+          weight: updatedWeight,
+          oldWeight: record.weight,
+        }),
+      };
+      await fetch("/updateWeight", options);
     });
   });
 }
 generateRecords();
+
+// ==================================================
+// UPDATE USER HEIGHT
+// ==================================================
+const updateHeightBtn = document.querySelector(".edit-details");
+const saveHeightBtn = document.querySelector(".save-details");
+const userDetailsHeight = document.querySelector(".details-height");
+let updatedHeight;
+
+// edit btn
+updateHeightBtn.addEventListener("click", async () => {
+  userDetailsHeight.innerHTML = `<input  type="number" class="details-height-input" placeholder="Input New Height [cm]">`;
+  const heightInput = document.querySelector(".details-height-input");
+  heightInput.style.width = "12rem";
+  heightInput.style.padding = "0.5rem 1rem";
+  heightInput.style.border = "1px solid #1d556f";
+  heightInput.style.borderRadius = "0.5rem";
+  heightInput.style.backgroundColor = "hsl(0, 0%, 97%)";
+  heightInput.style.fontFamily = `"Rubik", sans-serif`;
+
+  // save new height
+  heightInput.addEventListener("change", async (e) => {
+    updatedHeight = e.target.value;
+  });
+});
+
+// save btn
+saveHeightBtn.addEventListener("click", async () => {
+  userDetailsHeight.innerHTML = `Height: ${updatedHeight}cm`;
+
+  // POST NEW HEIGHT
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ height: updatedHeight }),
+  };
+  await fetch("/updateHeight", options);
+});
