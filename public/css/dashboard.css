@@ -16,7 +16,7 @@ html {
 }
 
 body {
-  background-color: hsl(0deg, 0%, 93%);
+  background-color: #ededed;
 }
 
 a {
@@ -71,7 +71,7 @@ header .nav .user {
 .components .details {
   padding: 2rem;
   border-radius: 2rem;
-  background-color: hsl(0deg, 0%, 97%);
+  background-color: #f7f7f7;
   height: 20rem;
 }
 .components .details > h1 {
@@ -101,7 +101,7 @@ header .nav .user {
   justify-content: center;
   align-items: center;
   border-radius: 8px;
-  background-color: hsl(0deg, 0%, 93%);
+  background-color: #33b33e;
 }
 .components .details .update-details .edit-details > img {
   margin-right: 0.5rem;
@@ -112,17 +112,20 @@ header .nav .user {
   font-family: "Rubik", sans-serif;
   font-size: 1rem;
   font-weight: 400;
+  color: #f7f7f7;
 }
 .components .details .update-details .save-details {
+  pointer-events: none;
   cursor: pointer;
   width: auto;
   height: 2rem;
   padding: 0 1rem;
+  margin-right: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 8px;
-  background-color: hsl(0deg, 0%, 93%);
+  background-color: #fa360a;
 }
 .components .details .update-details .save-details > img {
   margin-right: 0.5rem;
@@ -133,11 +136,35 @@ header .nav .user {
   font-family: "Rubik", sans-serif;
   font-size: 1rem;
   font-weight: 400;
+  color: #f7f7f7;
+}
+.components .details .update-details .relogin {
+  display: none;
+  cursor: pointer;
+  width: auto;
+  height: 2rem;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background-color: #33b33e;
+}
+.components .details .update-details .relogin > img {
+  margin-right: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+}
+.components .details .update-details .relogin > h1 {
+  font-family: "Rubik", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #f7f7f7;
 }
 .components .weight {
   padding: 2rem;
   border-radius: 2rem;
-  background-color: hsl(0deg, 0%, 97%);
+  background-color: #f7f7f7;
   display: grid;
   gap: 1.25rem;
 }
@@ -181,7 +208,7 @@ header .nav .user {
   justify-content: center;
   align-items: center;
   border-radius: 8px;
-  background-color: hsl(0deg, 0%, 93%);
+  background-color: #33b33e;
 }
 .components .weight .weight-data .weight-data-edit > img {
   margin-right: 0.5rem;
@@ -192,8 +219,10 @@ header .nav .user {
   font-family: "Rubik", sans-serif;
   font-size: 1rem;
   font-weight: 400;
+  color: #f7f7f7;
 }
 .components .weight .weight-data .weight-data-save {
+  pointer-events: none;
   cursor: pointer;
   width: auto;
   height: 2rem;
@@ -203,7 +232,7 @@ header .nav .user {
   justify-content: center;
   align-items: center;
   border-radius: 8px;
-  background-color: hsl(0deg, 0%, 93%);
+  background-color: #fa360a;
 }
 .components .weight .weight-data .weight-data-save > img {
   margin-right: 0.5rem;
@@ -214,6 +243,7 @@ header .nav .user {
   font-family: "Rubik", sans-serif;
   font-size: 1rem;
   font-weight: 400;
+  color: #f7f7f7;
 }
 
 .footer {
@@ -221,8 +251,6 @@ header .nav .user {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: 2rem;
-  background-color: hsl(0deg, 0%, 97%);
 }
 .footer .quicklinks {
   padding: 0 2rem;
@@ -263,10 +291,11 @@ header .nav .user {
   flex-direction: column;
   margin-top: 1rem;
 }
-.footer .quicklinks__socials__links > a {
-  margin: 0.5rem 0;
-  color: #9b978b;
-  font-family: "Rubik", sans-serif;
+.footer .quicklinks__socials__links > img {
+  cursor: pointer;
+  margin-top: 0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 .footer .quicklinks__contact {
   padding: 1.25rem 0 0 0;
@@ -284,10 +313,11 @@ header .nav .user {
   flex-direction: column;
   margin-top: 1rem;
 }
-.footer .quicklinks__contact__links > a {
-  margin: 0.5rem 0;
-  color: #9b978b;
-  font-family: "Rubik", sans-serif;
+.footer .quicklinks__contact__links > img {
+  cursor: pointer;
+  margin-top: 0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 .footer .quicklinks__newsletter {
   padding: 1.25rem 0 0 0;
@@ -316,7 +346,7 @@ header .nav .user {
   padding: 0.5rem 1rem;
   border: 1px solid #1d556f;
   border-radius: 1rem 0 0 1rem;
-  background-color: hsl(0deg, 0%, 97%);
+  background-color: #ededed;
   font-family: "Rubik", sans-serif;
 }
 .footer .quicklinks__newsletter__input > button {
@@ -325,7 +355,7 @@ header .nav .user {
   background-color: #1d556f;
   border-radius: 0 1rem 1rem 0;
   font-family: "Rubik", sans-serif;
-  color: hsl(0deg, 0%, 93%);
+  color: #ededed;
 }
 .footer__division {
   margin: 1rem;

@@ -91,7 +91,6 @@
   padding: 2rem;
   display: flex;
   flex-direction: column;
-
   &__title {
     text-align: center;
     font-family: $RUBIK;
@@ -99,6 +98,7 @@
   }
   &__cards {
     display: flex;
+    justify-content: space-between;
     h1 {
       text-align: center;
       font-family: $OPEN_SANS;
@@ -130,6 +130,7 @@
   }
   &__cards {
     display: flex;
+    justify-content: space-between;
     h1 {
       text-align: center;
       font-family: $OPEN_SANS;
@@ -191,10 +192,11 @@
         display: flex;
         flex-direction: column;
         margin-top: 1rem;
-        > a {
-          margin: 0.5rem 0;
-          color: $DIMMED_LIGHT;
-          font-family: $RUBIK;
+        > img {
+          cursor: pointer;
+          margin-top: 0.5rem;
+          width: 1.5rem;
+          height: 1.5rem;
         }
       }
     }
@@ -212,10 +214,11 @@
         display: flex;
         flex-direction: column;
         margin-top: 1rem;
-        > a {
-          margin: 0.5rem 0;
-          color: $DIMMED_LIGHT;
-          font-family: $RUBIK;
+        > img {
+          cursor: pointer;
+          margin-top: 0.5rem;
+          width: 1.5rem;
+          height: 1.5rem;
         }
       }
     }

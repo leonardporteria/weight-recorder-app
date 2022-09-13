@@ -143,37 +143,60 @@ async function generateRecords() {
   // ==================================================
   // UPDATE USER WEIGHT
   // ==================================================
+  let hasToggledUpdateWeight;
+
   records.forEach((record) => {
     const dateRecorded = record.date;
     const userDate = dateRecorded.substring(0, 10);
 
     const weightElm = document.querySelector(`.weight-${userDate}`);
     const editBtn = document.querySelector(`.edit-${userDate}`);
+    const editBtnHeading = document.querySelector(`.edit-${userDate} h1`);
     const saveBtn = document.querySelector(`.save-${userDate}`);
 
     let updatedWeight;
+    let oldWeight = record.weight;
 
+    // edit btn
     editBtn.addEventListener("click", () => {
-      console.log(userDate);
-      console.log(updatedWeight);
+      if (!hasToggledUpdateWeight) {
+        hasToggledUpdateWeight = true;
 
-      weightElm.innerHTML = `<input  type="number" class="details-weight-input" placeholder="Input New Height [cm]">`;
-      const weightInput = document.querySelector(".details-weight-input");
-      weightInput.style.width = "12rem";
-      weightInput.style.padding = "0.25rem 1rem";
-      weightInput.style.border = "1px solid #1d556f";
-      weightInput.style.borderRadius = "0.5rem";
-      weightInput.style.backgroundColor = "hsl(0, 0%, 97%)";
-      weightInput.style.fontFamily = `"Rubik", sans-serif`;
+        weightElm.innerHTML = `<input  type="number" class="details-weight-input" placeholder="Input New Height [cm]">`;
+        const weightInput = document.querySelector(".details-weight-input");
+        weightInput.style.width = "12rem";
+        weightInput.style.padding = "0.25rem 1rem";
+        weightInput.style.border = "1px solid #1d556f";
+        weightInput.style.borderRadius = "0.5rem";
+        weightInput.style.backgroundColor = "hsl(0, 0%, 97%)";
+        weightInput.style.fontFamily = `"Rubik", sans-serif`;
 
-      // save new weight
-      weightInput.addEventListener("change", async (e) => {
-        updatedWeight = e.target.value;
-      });
+        // button style
+        editBtnHeading.textContent = "Cancel";
+        editBtn.style.backgroundColor = "#fa360a";
+        saveBtn.style.backgroundColor = "#33b33e";
+        saveBtn.style.pointerEvents = "all";
+
+        // save new weight
+        weightInput.addEventListener("change", async (e) => {
+          updatedWeight = e.target.value;
+        });
+      } else {
+        hasToggledUpdateWeight = false;
+        weightElm.innerHTML = `${oldWeight}kg`;
+
+        // button style
+        editBtnHeading.textContent = "Update";
+        editBtn.style.backgroundColor = "#33b33e";
+        saveBtn.style.backgroundColor = "#fa360a";
+        saveBtn.style.pointerEvents = "none";
+      }
     });
 
+    // save btn
     saveBtn.addEventListener("click", async () => {
-      console.log(updatedWeight);
+      hasToggledSave = true;
+      relogin.style.display = "flex";
       weightElm.innerHTML = `${updatedWeight}kg`;
 
       const options = {
@@ -197,30 +220,70 @@ generateRecords();
 // UPDATE USER HEIGHT
 // ==================================================
 const updateHeightBtn = document.querySelector(".edit-details");
+const updateHeightBtnIMG = document.querySelector(".edit-details-img");
+const updateHeightBtnHeading = document.querySelector(".edit-details-heading");
 const saveHeightBtn = document.querySelector(".save-details");
+const saveHeightBtnIMG = document.querySelector(".save-details- img");
+const saveHeightBtnHeading = document.querySelector(".save-details-heading");
+const relogin = document.querySelector(".relogin");
 const userDetailsHeight = document.querySelector(".details-height");
+
 let updatedHeight;
+
+let hasToggledUpdate;
+let hasToggledSave;
 
 // edit btn
 updateHeightBtn.addEventListener("click", async () => {
-  userDetailsHeight.innerHTML = `<input  type="number" class="details-height-input" placeholder="Input New Height [cm]">`;
-  const heightInput = document.querySelector(".details-height-input");
-  heightInput.style.width = "12rem";
-  heightInput.style.padding = "0.5rem 1rem";
-  heightInput.style.border = "1px solid #1d556f";
-  heightInput.style.borderRadius = "0.5rem";
-  heightInput.style.backgroundColor = "hsl(0, 0%, 97%)";
-  heightInput.style.fontFamily = `"Rubik", sans-serif`;
+  const response = await fetch("/saveData");
+  const user = await response.json();
 
-  // save new height
-  heightInput.addEventListener("change", async (e) => {
-    updatedHeight = e.target.value;
-  });
+  if (!hasToggledUpdate) {
+    // activate input
+    userDetailsHeight.innerHTML = `<input  type="number" class="details-height-input" placeholder="Input New Height [cm]">`;
+    const heightInput = document.querySelector(".details-height-input");
+    heightInput.style.width = "12rem";
+    heightInput.style.padding = "0.5rem 1rem";
+    heightInput.style.border = "1px solid #1d556f";
+    heightInput.style.borderRadius = "0.5rem";
+    heightInput.style.backgroundColor = "hsl(0, 0%, 97%)";
+    heightInput.style.fontFamily = `"Rubik", sans-serif`;
+
+    hasToggledUpdate = true;
+
+    // update button style
+    updateHeightBtnHeading.textContent = "Cancel";
+    updateHeightBtn.backgroundColor = "#fa360a";
+
+    saveHeightBtn.style.backgroundColor = "#33b33e";
+    saveHeightBtn.style.pointerEvents = "all";
+
+    // save new height
+    heightInput.addEventListener("change", async (e) => {
+      updatedHeight = e.target.value;
+    });
+  } else {
+    // deactivate input
+    hasToggledUpdate = false;
+    userDetailsHeight.innerHTML = `Height: ${user.height}cm`;
+    updateHeightBtnHeading.textContent = "Update";
+
+    // update button style
+    saveHeightBtn.style.backgroundColor = "#fa360a";
+    saveHeightBtn.style.pointerEvents = "none";
+  }
 });
 
 // save btn
 saveHeightBtn.addEventListener("click", async () => {
+  hasToggledSave = true;
+
+  relogin.style.display = "flex";
+
   userDetailsHeight.innerHTML = `Height: ${updatedHeight}cm`;
+  updateHeightBtnHeading.textContent = "Update";
+  saveHeightBtn.style.backgroundColor = "#fa360a";
+  saveHeightBtn.style.pointerEvents = "none";
 
   // POST NEW HEIGHT
   const options = {
@@ -231,4 +294,21 @@ saveHeightBtn.addEventListener("click", async () => {
     body: JSON.stringify({ height: updatedHeight }),
   };
   await fetch("/updateHeight", options);
+});
+
+// ==================================================
+// DOM
+// ==================================================
+relogin.style.display = "none";
+
+const homeBtn = document.querySelector(".home-btn");
+const alertDetails = document.querySelector(".details-prompt");
+// check if need to rleogin
+homeBtn.addEventListener("click", async () => {
+  if (hasToggledSave) {
+    alertDetails.textContent = "RELOGIN IS REQURED TO UPDATE THE DETAILS";
+    alertDetails.style.color = "#fa360a";
+  } else {
+    location.replace("./home");
+  }
 });

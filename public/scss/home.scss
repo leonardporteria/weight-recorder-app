@@ -140,13 +140,12 @@ header {
 // ==================================================
 // FOOTER
 // ==================================================
+
 .footer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: 2rem;
-  background-color: $WHITE;
   .quicklinks {
     padding: 0 2rem;
     display: grid;
@@ -183,10 +182,11 @@ header {
         display: flex;
         flex-direction: column;
         margin-top: 1rem;
-        > a {
-          margin: 0.5rem 0;
-          color: $DIMMED_LIGHT;
-          font-family: $RUBIK;
+        > img {
+          cursor: pointer;
+          margin-top: 0.5rem;
+          width: 1.5rem;
+          height: 1.5rem;
         }
       }
     }
@@ -204,10 +204,11 @@ header {
         display: flex;
         flex-direction: column;
         margin-top: 1rem;
-        > a {
-          margin: 0.5rem 0;
-          color: $DIMMED_LIGHT;
-          font-family: $RUBIK;
+        > img {
+          cursor: pointer;
+          margin-top: 0.5rem;
+          width: 1.5rem;
+          height: 1.5rem;
         }
       }
     }
@@ -236,7 +237,7 @@ header {
           padding: 0.5rem 1rem;
           border: 1px solid $DARK_BLUE;
           border-radius: 1rem 0 0 1rem;
-          background-color: $WHITE;
+          background-color: $BASE_LIGHT;
           font-family: $RUBIK;
         }
         > button {

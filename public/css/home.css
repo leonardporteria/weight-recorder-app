@@ -16,7 +16,7 @@ html {
 }
 
 body {
-  background-color: hsl(0deg, 0%, 93%);
+  background-color: #ededed;
 }
 
 a {
@@ -71,7 +71,7 @@ header .nav .user {
 .components .details {
   padding: 2rem;
   border-radius: 2rem;
-  background-color: hsl(0deg, 0%, 97%);
+  background-color: #f7f7f7;
   height: 15rem;
 }
 .components .details > h1 {
@@ -106,12 +106,12 @@ header .nav .user {
   font-size: 2rem;
   font-weight: 400;
   text-align: center;
-  color: hsl(0deg, 0%, 93%);
+  color: #ededed;
 }
 .components .main > form > label {
   margin-top: 2rem;
   font-family: "Open Sans", sans-serif;
-  color: hsl(0deg, 0%, 93%);
+  color: #ededed;
 }
 .components .main > form > input {
   width: 20rem;
@@ -119,18 +119,18 @@ header .nav .user {
   border: 1px solid #1d556f;
   border-radius: 0.5rem;
   font-family: "Rubik", sans-serif;
-  background-color: hsl(0deg, 0%, 93%);
+  background-color: #ededed;
 }
 .components .main > form > button {
   cursor: pointer;
   margin-top: 1rem;
   height: 3rem;
   width: 7rem;
-  border: 1px hsl(0deg, 0%, 93%) solid;
+  border: 1px #ededed solid;
   border-radius: 2rem;
   font-family: "Rubik", sans-serif;
   font-size: 1rem;
-  color: hsl(0deg, 0%, 93%);
+  color: #ededed;
   background-color: #1d556f;
 }
 .components .main .stats {
@@ -139,7 +139,7 @@ header .nav .user {
 .components .main .stats .stats-current-week {
   padding: 2rem;
   border-radius: 2rem;
-  background-color: hsl(0deg, 0%, 97%);
+  background-color: #f7f7f7;
 }
 .components .average {
   display: grid;
@@ -151,13 +151,13 @@ header .nav .user {
 .components .average .box {
   padding: 2rem;
   border-radius: 2rem;
-  background-color: hsl(0deg, 0%, 97%);
+  background-color: #f7f7f7;
   overflow: hidden;
 }
 .components .all-time-average {
   padding: 2rem;
   border-radius: 2rem;
-  background-color: hsl(0deg, 0%, 97%);
+  background-color: #f7f7f7;
   overflow: hidden;
 }
 
@@ -166,8 +166,6 @@ header .nav .user {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: 2rem;
-  background-color: hsl(0deg, 0%, 97%);
 }
 .footer .quicklinks {
   padding: 0 2rem;
@@ -208,10 +206,11 @@ header .nav .user {
   flex-direction: column;
   margin-top: 1rem;
 }
-.footer .quicklinks__socials__links > a {
-  margin: 0.5rem 0;
-  color: #9b978b;
-  font-family: "Rubik", sans-serif;
+.footer .quicklinks__socials__links > img {
+  cursor: pointer;
+  margin-top: 0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 .footer .quicklinks__contact {
   padding: 1.25rem 0 0 0;
@@ -229,10 +228,11 @@ header .nav .user {
   flex-direction: column;
   margin-top: 1rem;
 }
-.footer .quicklinks__contact__links > a {
-  margin: 0.5rem 0;
-  color: #9b978b;
-  font-family: "Rubik", sans-serif;
+.footer .quicklinks__contact__links > img {
+  cursor: pointer;
+  margin-top: 0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 .footer .quicklinks__newsletter {
   padding: 1.25rem 0 0 0;
@@ -261,7 +261,7 @@ header .nav .user {
   padding: 0.5rem 1rem;
   border: 1px solid #1d556f;
   border-radius: 1rem 0 0 1rem;
-  background-color: hsl(0deg, 0%, 97%);
+  background-color: #ededed;
   font-family: "Rubik", sans-serif;
 }
 .footer .quicklinks__newsletter__input > button {
@@ -270,7 +270,7 @@ header .nav .user {
   background-color: #1d556f;
   border-radius: 0 1rem 1rem 0;
   font-family: "Rubik", sans-serif;
-  color: hsl(0deg, 0%, 93%);
+  color: #ededed;
 }
 .footer__division {
   margin: 1rem;

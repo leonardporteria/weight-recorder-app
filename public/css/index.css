@@ -16,7 +16,7 @@ html {
 }
 
 body {
-  background-color: hsl(0deg, 0%, 93%);
+  background-color: #ededed;
 }
 
 a {
@@ -73,7 +73,7 @@ h6 {
 }
 .header__auth > a > p {
   font-family: "Rubik", sans-serif;
-  color: hsl(0deg, 0%, 93%);
+  color: #ededed;
 }
 
 .hero {
@@ -116,7 +116,7 @@ h6 {
 }
 .hero__content > a > p {
   font-family: "Rubik", sans-serif;
-  color: hsl(0deg, 0%, 93%);
+  color: #ededed;
 }
 
 .about {
@@ -131,6 +131,7 @@ h6 {
 }
 .about__cards {
   display: flex;
+  justify-content: space-between;
 }
 .about__cards h1 {
   text-align: center;
@@ -155,6 +156,7 @@ h6 {
 }
 .features__cards {
   display: flex;
+  justify-content: space-between;
 }
 .features__cards h1 {
   text-align: center;
@@ -212,10 +214,11 @@ h6 {
   flex-direction: column;
   margin-top: 1rem;
 }
-.footer .quicklinks__socials__links > a {
-  margin: 0.5rem 0;
-  color: #9b978b;
-  font-family: "Rubik", sans-serif;
+.footer .quicklinks__socials__links > img {
+  cursor: pointer;
+  margin-top: 0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 .footer .quicklinks__contact {
   padding: 1.25rem 0 0 0;
@@ -233,10 +236,11 @@ h6 {
   flex-direction: column;
   margin-top: 1rem;
 }
-.footer .quicklinks__contact__links > a {
-  margin: 0.5rem 0;
-  color: #9b978b;
-  font-family: "Rubik", sans-serif;
+.footer .quicklinks__contact__links > img {
+  cursor: pointer;
+  margin-top: 0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 .footer .quicklinks__newsletter {
   padding: 1.25rem 0 0 0;
@@ -265,7 +269,7 @@ h6 {
   padding: 0.5rem 1rem;
   border: 1px solid #1d556f;
   border-radius: 1rem 0 0 1rem;
-  background-color: hsl(0deg, 0%, 93%);
+  background-color: #ededed;
   font-family: "Rubik", sans-serif;
 }
 .footer .quicklinks__newsletter__input > button {
@@ -274,7 +278,7 @@ h6 {
   background-color: #1d556f;
   border-radius: 0 1rem 1rem 0;
   font-family: "Rubik", sans-serif;
-  color: hsl(0deg, 0%, 93%);
+  color: #ededed;
 }
 .footer__division {
   margin: 1rem;

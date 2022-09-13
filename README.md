@@ -23,12 +23,12 @@ The database used in this web application is NeDB and the hosting is heroku whic
 
 - clone the repository
 - change directory to app<br/>
-```cd weight-recording-app``` <br/>
+  `cd weight-recording-app` <br/>
 - install dependencies<br/>
-```npm i``` <br/>
+  `npm i` <br/>
 - run server <br/>
-```nodemon server``` <br/>
+  `nodemon server` <br/>
 - open link <br/>
-```http://localhost:3000/``` <br/>
+  `http://localhost:3000/` <br/>
 
 use the app as intended, the database will be written locally therefore saving your data in your local computer.

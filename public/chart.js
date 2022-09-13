@@ -1,4 +1,19 @@
 // ==================================================
+// COLORS
+// ==================================================
+const BLUE = "#288fb4";
+const DARK_BLUE = "#1d556f";
+const PURPLE = "#8d6bce";
+const DARK_PURPLE = "#724fb4";
+const RED = "#fa360a";
+const LIGHT_RED = "#f56f51";
+const GREEN = "#33b33e";
+const BASE_LIGHT = "#ededed";
+const WHITE = "#f7f7f7";
+const DIMMED_LIGHT = "#9b978b";
+const BLACK = "#181818";
+
+// ==================================================
 // HELPER FUNCTIONS
 // ==================================================
 export async function loadWeightData() {
@@ -164,8 +179,8 @@ export class ChartGenerator {
             label: "LAST 7 RECORDS",
             data: weightRecord,
             fill: false,
-            backgroundColor: "rgba(50, 0, 0, 0.1)",
-            borderColor: "rgba(255, 99, 132, 1)",
+            backgroundColor: BLUE,
+            borderColor: DARK_BLUE,
             borderWidth: 1,
             tension: 0.1,
           },
@@ -202,8 +217,8 @@ export class ChartGenerator {
             label: `RECORD FOR THE MONTH OF ${nameOfMonth.toUpperCase()}`,
             data: weight,
             fill: false,
-            backgroundColor: "rgba(255, 99, 132, 0.2)",
-            borderColor: "rgba(255, 99, 132, 1)",
+            backgroundColor: BLUE,
+            borderColor: DARK_BLUE,
             borderWidth: 1,
             tension: 0.1,
           },
@@ -244,8 +259,8 @@ export class ChartGenerator {
             label: `RECORD FOR THE MONTH OF ${previousMonth.toUpperCase()}`,
             data: weight,
             fill: false,
-            backgroundColor: "rgba(255, 99, 132, 0.2)",
-            borderColor: "rgba(255, 99, 132, 1)",
+            backgroundColor: BLUE,
+            borderColor: DARK_BLUE,
             borderWidth: 1,
             tension: 0.1,
           },
@@ -281,8 +296,8 @@ export class ChartGenerator {
             label: "ALL TIME WEIGHT",
             data: weight,
             fill: false,
-            backgroundColor: "rgba(255, 99, 132, 0.2)",
-            borderColor: "rgba(255, 99, 132, 1)",
+            backgroundColor: LIGHT_RED,
+            borderColor: RED,
             borderWidth: 1,
             tension: 0.1,
           },

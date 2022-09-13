@@ -165,10 +165,11 @@ body {
         display: flex;
         flex-direction: column;
         margin-top: 1rem;
-        > a {
-          margin: 0.5rem 0;
-          color: $DIMMED_LIGHT;
-          font-family: $RUBIK;
+        > img {
+          cursor: pointer;
+          margin-top: 0.5rem;
+          width: 1.5rem;
+          height: 1.5rem;
         }
       }
     }
@@ -186,10 +187,11 @@ body {
         display: flex;
         flex-direction: column;
         margin-top: 1rem;
-        > a {
-          margin: 0.5rem 0;
-          color: $DIMMED_LIGHT;
-          font-family: $RUBIK;
+        > img {
+          cursor: pointer;
+          margin-top: 0.5rem;
+          width: 1.5rem;
+          height: 1.5rem;
         }
       }
     }
@@ -251,7 +253,6 @@ body {
     }
   }
 }
-
 .overlay {
   display: none;
   position: absolute;
